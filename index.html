@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Abdul Hanan — WordPress Developer & Shopify Designer based in Lahore, Pakistan. Building responsive, SEO-friendly websites and online stores." />
+  <meta name="keywords" content="Abdul Hanan, WordPress Developer, Shopify Designer, Frontend Developer, Lahore, Pakistan" />
+  <meta name="author" content="Abdul Hanan" />
+  <meta name="theme-color" content="#f9ca24" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Abdul Hanan — WordPress Developer & Shopify Designer" />
+  <meta property="og:description" content="WordPress, Shopify, and Frontend development for businesses across Pakistan and worldwide." />
+  <meta property="og:type" content="website" />
+
+  <title>Abdul Hanan — WordPress & Shopify Developer</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=Nunito:wght@300;400;500;600;700;800&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
+
+  <!-- Font Awesome CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!-- CSS Style Link -->
+  <link rel="stylesheet" href="CSS/Style.css" />
+</head>
+
+<body>
+
+  <!-- Scroll progress bar -->
+  <div class="scroll-progress" id="scrollProgress"></div>
+
+  <!-- Background ambient glows -->
+  <div class="bg-glows" aria-hidden="true">
+    <span class="glow glow-1"></span>
+    <span class="glow glow-2"></span>
+    <span class="glow glow-3"></span>
+  </div>
+
+  <!-- Header / Sidebar Section Start -->
+  <header>
+    <div class="user">
+      <div class="avatar-wrap">
+        <div class="avatar-monogram">
+          <span>AH</span>
+        </div>
+        <span class="status-dot" title="Available for work"></span>
+      </div>
+      <h3 class="name">Abdul Hanan</h3>
+      <p class="post"><span class="typed-text"></span><span class="typed-cursor">|</span></p>
+    </div>
+
+    <div class="sidebar-status">
+      <i class="fa-brands fa-shopify"></i>
+      <div>
+        <span>Currently at</span>
+        <strong>CNC Electric Pakistan</strong>
+      </div>
+    </div>
+
+    <nav class="navbar">
+      <ul>
+        <li><a href="#home" class="active"><i class="fa-solid fa-house"></i> <span>Home</span></a></li>
+        <li><a href="#about"><i class="fa-solid fa-user"></i> <span>About</span></a></li>
+        <li><a href="#skills"><i class="fa-solid fa-code"></i> <span>Skills</span></a></li>
+        <li><a href="#services"><i class="fa-solid fa-briefcase"></i> <span>Services</span></a></li>
+        <li><a href="#education"><i class="fa-solid fa-user-graduate"></i> <span>Education</span></a></li>
+        <li><a href="#portfolio"><i class="fa-solid fa-images"></i> <span>Portfolio</span></a></li>
+        <li><a href="#contact"><i class="fa-solid fa-phone"></i> <span>Contact</span></a></li>
+      </ul>
+    </nav>
+
+    <div class="sidebar-social">
+      <a target="_blank" rel="noopener" href="https://github.com/Hanan-develop" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+      <a target="_blank" rel="noopener" href="https://www.linkedin.com/in/abdul-hanan-b23a24339/" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+      <a target="_blank" rel="noopener" href="https://www.youtube.com/@AbdulHanan_5345" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+      <a target="_blank" rel="noopener" href="https://wa.me/923254145534" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+    </div>
+  </header>
+  <!-- Header Section End -->
+
+  <div id="menu" class="fas fa-bars"></div>
+
+  <!-- Home Section Start -->
+  <section class="home" id="home">
+    <div class="home-badge">
+      <span class="pulse-dot"></span>
+      <span>Available for new projects</span>
+    </div>
+
+    <h3>HI THERE !</h3>
+    <h1>I'M <span>Abdul Hanan</span></h1>
+    <p class="home-tagline">
+      WordPress Developer <em>&</em> Shopify Designer
+    </p>
+    <p>
+      A passionate developer from Lahore, Pakistan — building responsive, SEO-friendly websites and online stores. 
+      Skilled in HTML, CSS, JavaScript, jQuery, Bootstrap, WordPress, and Shopify.
+    </p>
+
+    <div class="home-cta">
+      <a href="#about"><button class="btn btn-primary"><i class="fas fa-user"></i> About Me</button></a>
+      <a href="#contact"><button class="btn btn-ghost"><i class="fas fa-paper-plane"></i> Hire Me</button></a>
+    </div>
+
+    <!-- Rotating "Let's collaborate" badge -->
+    <a href="#contact" class="hero-rotating-badge" aria-label="Get in touch">
+      <svg viewBox="0 0 200 200" class="rotating-svg" aria-hidden="true">
+        <defs>
+          <path id="text-circle" d="M 100, 100 m -78, 0 a 78,78 0 1,1 156,0 a 78,78 0 1,1 -156,0" />
+        </defs>
+        <text>
+          <textPath href="#text-circle" startOffset="0">
+            • AVAILABLE FOR WORK • LET'S COLLABORATE 
+          </textPath>
+        </text>
+      </svg>
+      <span class="badge-arrow"><i class="fa-solid fa-arrow-up"></i></span>
+    </a>
+
+    <!-- Tech Marquee -->
+    <div class="tech-marquee">
+      <div class="marquee-label">Tech Stack</div>
+      <div class="marquee">
+        <div class="marquee-track">
+          <span><i class="fa-brands fa-html5"></i> HTML5</span>
+          <span><i class="fa-brands fa-css3-alt"></i> CSS3</span>
+          <span><i class="fa-brands fa-js"></i> JavaScript</span>
+          <span><i class="fa-brands fa-wordpress"></i> WordPress</span>
+          <span><i class="fa-brands fa-shopify"></i> Shopify</span>
+          <span><i class="fa-brands fa-bootstrap"></i> Bootstrap</span>
+          <span><i class="fa-solid fa-code"></i> jQuery</span>
+          <span><i class="fa-brands fa-php"></i> PHP</span>
+          <!-- duplicate for seamless loop -->
+          <span><i class="fa-brands fa-html5"></i> HTML5</span>
+          <span><i class="fa-brands fa-css3-alt"></i> CSS3</span>
+          <span><i class="fa-brands fa-js"></i> JavaScript</span>
+          <span><i class="fa-brands fa-wordpress"></i> WordPress</span>
+          <span><i class="fa-brands fa-shopify"></i> Shopify</span>
+          <span><i class="fa-brands fa-bootstrap"></i> Bootstrap</span>
+          <span><i class="fa-solid fa-code"></i> jQuery</span>
+          <span><i class="fa-brands fa-php"></i> PHP</span>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Home Section End -->
+
+  <!-- About Section Start -->
+  <section class="about" id="about">
+    <div class="section-head reveal">
+      <span class="eyebrow">01 — About</span>
+      <h1 class="heading"><span>About </span>Me</h1>
+    </div>
+
+    <div class="row">
+      <div class="info reveal">
+        <h3><span>Name: </span> Abdul Hanan</h3>
+        <h3><span>Age: </span> 20</h3>
+        <h3><span>Qualification: </span> BS Computer Science (VU Pakistan)</h3>
+        <h3><span>Post: </span> WordPress &amp; Shopify Developer</h3>
+        <h3><span>Languages: </span> Urdu, English, Punjabi</h3>
+        <h3><span>Location: </span> Lahore, Pakistan</h3>
+
+        <div class="social-links">
+          <a target="_blank" rel="noopener" href="https://github.com/Hanan-develop"><i class="fa-brands fa-github"></i></a>
+          <a target="_blank" rel="noopener" href="https://www.linkedin.com/in/abdul-hanan-b23a24339/"><i class="fa-brands fa-linkedin"></i></a>
+          <a target="_blank" rel="noopener" href="https://www.youtube.com/@AbdulHanan_5345"><i class="fa-brands fa-youtube"></i></a>
+          <a target="_blank" rel="noopener" href="https://wa.me/923254145534"><i class="fa-brands fa-whatsapp"></i></a>
+        </div><br>
+
+        <a href="Abdul Hanan.pdf" target="_blank">
+          <button class="btn btn-primary">
+            <i class="fa fa-download"></i> Download CV
+          </button>
+        </a>
+      </div>
+
+      <div class="counter">
+        <div class="box reveal" data-delay="0">
+          <i class="fa-solid fa-calendar-check"></i>
+          <span data-count="1">0</span>
+          <h3>Years Experience</h3>
+        </div>
+        <div class="box reveal" data-delay="100">
+          <i class="fa-solid fa-folder-open"></i>
+          <span data-count="6">0</span>
+          <h3>Projects Completed</h3>
+        </div>
+        <div class="box reveal" data-delay="200">
+          <i class="fa-solid fa-users"></i>
+          <span data-count="430">0</span>
+          <h3>Happy Clients</h3>
+        </div>
+        <div class="box reveal" data-delay="300">
+          <i class="fa-solid fa-trophy"></i>
+          <span data-count="12">0</span>
+          <h3>Awards Won</h3>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- About Section End -->
+
+  <!-- Skills Section Start -->
+  <section class="skills" id="skills">
+    <div class="section-head reveal">
+      <span class="eyebrow">02 — Skills</span>
+      <h1 class="heading">My <span>Skills</span></h1>
+    </div>
+
+    <div class="skills-wrap">
+      <!-- Progress Bars -->
+      <div class="skills-bars reveal">
+        <h3 class="skills-heading">Technical proficiency</h3>
+
+        <div class="skill" data-percent="95">
+          <div class="skill-top"><span><i class="fa-brands fa-html5"></i> HTML5 / CSS3</span><span class="skill-pct">95%</span></div>
+          <div class="skill-bar"><span></span></div>
+        </div>
+        <div class="skill" data-percent="90">
+          <div class="skill-top"><span><i class="fa-brands fa-bootstrap"></i> Bootstrap</span><span class="skill-pct">90%</span></div>
+          <div class="skill-bar"><span></span></div>
+        </div>
+        <div class="skill" data-percent="90">
+          <div class="skill-top"><span><i class="fa-brands fa-wordpress"></i> WordPress</span><span class="skill-pct">90%</span></div>
+          <div class="skill-bar"><span></span></div>
+        </div>
+        <div class="skill" data-percent="85">
+          <div class="skill-top"><span><i class="fa-solid fa-code"></i> jQuery</span><span class="skill-pct">85%</span></div>
+          <div class="skill-bar"><span></span></div>
+        </div>
+        <div class="skill" data-percent="80">
+          <div class="skill-top"><span><i class="fa-brands fa-shopify"></i> Shopify</span><span class="skill-pct">80%</span></div>
+          <div class="skill-bar"><span></span></div>
+        </div>
+        <div class="skill" data-percent="80">
+          <div class="skill-top"><span><i class="fa-brands fa-js"></i> JavaScript</span><span class="skill-pct">80%</span></div>
+          <div class="skill-bar"><span></span></div>
+        </div>
+        <div class="skill" data-percent="65">
+          <div class="skill-top"><span><i class="fa-solid fa-magnifying-glass-chart"></i> On-page SEO (Yoast)</span><span class="skill-pct">65%</span></div>
+          <div class="skill-bar"><span></span></div>
+        </div>
+        <div class="skill" data-percent="60">
+          <div class="skill-top"><span><i class="fa-brands fa-php"></i> PHP (Basic)</span><span class="skill-pct">60%</span></div>
+          <div class="skill-bar"><span></span></div>
+        </div>
+      </div>
+
+      <!-- Skill Tiles -->
+      <div class="skills-grid">
+        <div class="skill-tile reveal" data-delay="50">
+          <i class="fa-brands fa-wordpress"></i>
+          <h4>WordPress</h4>
+          <p>Theme & plugin customization</p>
+        </div>
+        <div class="skill-tile reveal" data-delay="100">
+          <i class="fa-brands fa-shopify"></i>
+          <h4>Shopify</h4>
+          <p>Store setup & Liquid theming</p>
+        </div>
+        <div class="skill-tile reveal" data-delay="150">
+          <i class="fa-solid fa-mobile-screen-button"></i>
+          <h4>Responsive</h4>
+          <p>Mobile-first design</p>
+        </div>
+        <div class="skill-tile reveal" data-delay="200">
+          <i class="fa-solid fa-magnifying-glass-chart"></i>
+          <h4>Basic SEO</h4>
+          <p>Yoast & on-page basics</p>
+        </div>
+        <div class="skill-tile reveal" data-delay="250">
+          <i class="fa-solid fa-gauge-high"></i>
+          <h4>Performance</h4>
+          <p>Speed optimization</p>
+        </div>
+        <div class="skill-tile reveal" data-delay="300">
+          <i class="fa-brands fa-git-alt"></i>
+          <h4>Git</h4>
+          <p>Version control</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Skills Section End -->
+
+  <!-- Services Section Start -->
+  <section class="services" id="services">
+    <div class="section-head reveal">
+      <span class="eyebrow">03 — Services</span>
+      <h1 class="heading">My <span>Services</span></h1>
+    </div>
+
+    <div class="services-grid">
+      <div class="service-card reveal" data-delay="0">
+        <div class="service-num">01</div>
+        <i class="fa-brands fa-wordpress service-icon"></i>
+        <h3>WordPress Development</h3>
+        <p>Custom WordPress themes & plugins, page builders, and content management — tailored to your brand and built to scale.</p>
+        <ul>
+          <li>Theme customization</li>
+          <li>Plugin integration</li>
+          <li>Elementor / WPBakery</li>
+        </ul>
+      </div>
+
+      <div class="service-card reveal" data-delay="100">
+        <div class="service-num">02</div>
+        <i class="fa-brands fa-shopify service-icon"></i>
+        <h3>Shopify Design</h3>
+        <p>End-to-end Shopify store setup with conversion-focused design, custom Liquid theming, and product management.</p>
+        <ul>
+          <li>Store setup</li>
+          <li>Theme customization</li>
+          <li>Liquid templating</li>
+        </ul>
+      </div>
+
+      <div class="service-card reveal feature" data-delay="200">
+        <div class="service-num">03</div>
+        <i class="fa-solid fa-code service-icon"></i>
+        <h3>Frontend Development</h3>
+        <p>Pixel-perfect, responsive websites built with HTML, CSS, JavaScript, jQuery, and Bootstrap — fast and SEO-ready.</p>
+        <ul>
+          <li>HTML / CSS / JS</li>
+          <li>jQuery & Bootstrap</li>
+          <li>Mobile-first builds</li>
+        </ul>
+        <span class="feature-badge">Most loved</span>
+      </div>
+
+      <div class="service-card reveal" data-delay="300">
+        <div class="service-num">04</div>
+        <i class="fa-solid fa-magnifying-glass-chart service-icon"></i>
+        <h3>Basic SEO Setup</h3>
+        <p>On-page SEO basics and Yoast plugin setup for WordPress sites — better structure, faster pages, search-ready.</p>
+        <ul>
+          <li>Yoast SEO setup</li>
+          <li>Meta tags & sitemap</li>
+          <li>Page speed basics</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+  <!-- Services Section End -->
+
+  <!-- Education Section Start -->
+  <section id="education" class="education">
+    <div class="section-head reveal">
+      <span class="eyebrow">04 — Journey</span>
+      <h1 class="heading">My <span>Education &amp; Experience</span></h1>
+    </div>
+
+    <div class="timeline">
+      <div class="timeline-line"></div>
+
+      <div class="t-item reveal">
+        <div class="t-dot"></div>
+        <div class="t-card">
+          <i class="fas fa-graduation-cap"></i>
+          <span class="t-date">2021 - 2022</span>
+          <h3>Matriculation</h3>
+          <p>Completed Matric with a strong foundation in science and mathematics, developing analytical and problem-solving skills.</p>
+        </div>
+      </div>
+
+      <div class="t-item reveal" data-delay="100">
+        <div class="t-dot"></div>
+        <div class="t-card">
+          <i class="fas fa-graduation-cap"></i>
+          <span class="t-date">2022 - 2024</span>
+          <h3>Intermediate (FSc Pre-Engineering)</h3>
+          <p>Punjab College Kasur — focus on mathematics, physics, and chemistry, building a strong analytical and technical foundation.</p>
+        </div>
+      </div>
+
+      <div class="t-item reveal" data-delay="200">
+        <div class="t-dot active"></div>
+        <div class="t-card highlight">
+          <i class="fa-brands fa-wordpress"></i>
+          <span class="t-date">July 2024 - March 2025</span>
+          <h3>WordPress / Frontend Developer</h3>
+          <p><strong>Al Khawarizmi Institute of Computer Science, Lahore</strong> — Built responsive websites using HTML5, CSS3, JS, jQuery, Bootstrap. Customized WordPress themes/plugins. Optimized SEO via Lighthouse & Yoast.</p>
+        </div>
+      </div>
+
+      <div class="t-item reveal" data-delay="300">
+        <div class="t-dot"></div>
+        <div class="t-card">
+          <i class="fa-solid fa-laptop-code"></i>
+          <span class="t-date">2025 - Present</span>
+          <h3>BS Computer Science</h3>
+          <p>Virtual University of Pakistan — pursuing a Bachelor's degree in Computer Science alongside professional work.</p>
+        </div>
+      </div>
+
+      <div class="t-item reveal" data-delay="400">
+        <div class="t-dot active"></div>
+        <div class="t-card highlight">
+          <i class="fa-brands fa-shopify"></i>
+          <span class="t-date">May 2025 - Present</span>
+          <h3>Shopify Designer</h3>
+          <p><strong>CNC Electric Pakistan</strong> — Designing and developing Shopify stores, customizing themes, and optimizing performance & SEO for e-commerce.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Education Section End -->
+
+  <!-- Portfolio Section Start -->
+  <section class="portfolio" id="portfolio">
+    <div class="section-head reveal">
+      <span class="eyebrow">05 — Work</span>
+      <h1 class="heading">My <span>Portfolio</span></h1>
+    </div>
+
+    <div class="box-container">
+      <div class="box reveal" data-delay="0">
+        <img src="img/Image-1.jpg" alt="Project 1" />
+        <div class="overlay">
+          <span class="cat">Web Design</span>
+          <h3>Social Dashboard</h3>
+          <a href="#" class="overlay-btn"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+        </div>
+      </div>
+      <div class="box reveal" data-delay="100">
+        <img src="img/Image2.jpg" alt="Project 2" />
+        <div class="overlay">
+          <span class="cat">WordPress</span>
+          <h3>Analytics Platform</h3>
+          <a href="#" class="overlay-btn"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+        </div>
+      </div>
+      <div class="box reveal" data-delay="200">
+        <img src="img/Image-3.jpg" alt="Project 3" />
+        <div class="overlay">
+          <span class="cat">Frontend</span>
+          <h3>Editorial Website</h3>
+          <a href="#" class="overlay-btn"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+        </div>
+      </div>
+      <div class="box reveal" data-delay="300">
+        <img src="img/lmage-4.jpg" alt="Project 4" />
+        <div class="overlay">
+          <span class="cat">Shopify</span>
+          <h3>Mobile Commerce</h3>
+          <a href="#" class="overlay-btn"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+        </div>
+      </div>
+      <div class="box reveal" data-delay="400">
+        <img src="img/Image-5.jpg" alt="Project 5" />
+        <div class="overlay">
+          <span class="cat">WordPress</span>
+          <h3>AI Tools Hub</h3>
+          <a href="#" class="overlay-btn"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+        </div>
+      </div>
+      <div class="box reveal" data-delay="500">
+        <img src="img/Image-6.jpg" alt="Project 6" />
+        <div class="overlay">
+          <span class="cat">UI Design</span>
+          <h3>App Landing Page</h3>
+          <a href="#" class="overlay-btn"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Portfolio Section End -->
+
+  <!-- Contact Section Start -->
+  <section class="contact" id="contact">
+    <div class="section-head reveal">
+      <span class="eyebrow">06 — Contact</span>
+      <h1 class="heading"><span>Contact </span>Me</h1>
+    </div>
+
+    <div class="row">
+      <div class="content reveal">
+        <h3 class="title"><span>Contact </span>Info</h3>
+        <p class="contact-lead">Have a project in mind? Let's discuss it. I usually reply within a few hours.</p>
+
+        <div class="info">
+          <h3><i class="fa-solid fa-user"></i> Abdul Hanan</h3>
+          <h3><i class="fas fa-envelope"></i> abdulhanan4145534@gmail.com</h3>
+          <h3><i class="fas fa-phone"></i> +92 325 4145534</h3>
+          <h3><i class="fa-solid fa-location-dot"></i> Lahore Punjab, Pakistan</h3>
+        </div>
+
+        <div class="social-links">
+          <a target="_blank" rel="noopener" href="https://github.com/Hanan-develop"><i class="fa-brands fa-github"></i></a>
+          <a target="_blank" rel="noopener" href="https://www.linkedin.com/in/abdul-hanan-b23a24339/"><i class="fa-brands fa-linkedin"></i></a>
+          <a target="_blank" rel="noopener" href="https://www.youtube.com/@AbdulHanan_5345"><i class="fa-brands fa-youtube"></i></a>
+          <a target="_blank" rel="noopener" href="https://wa.me/923254145534"><i class="fa-brands fa-whatsapp"></i></a>
+        </div>
+      </div>
+
+      <form action="#" method="POST" class="reveal" data-delay="100" id="contactForm">
+        <div class="form-field">
+          <input type="text" name="name" id="f-name" placeholder=" " required />
+          <label for="f-name">Your Name</label>
+        </div>
+        <div class="form-field">
+          <input type="email" name="email" id="f-email" placeholder=" " required />
+          <label for="f-email">Email Address</label>
+        </div>
+        <div class="form-field">
+          <input type="text" name="mobile" id="f-mobile" placeholder=" " required />
+          <label for="f-mobile">Mobile Number</label>
+        </div>
+        <div class="form-field">
+          <input type="text" name="project" id="f-project" placeholder=" " required />
+          <label for="f-project">Project Type</label>
+        </div>
+        <div class="form-field">
+          <textarea name="message" id="f-message" rows="6" placeholder=" " required></textarea>
+          <label for="f-message">Your Message</label>
+        </div>
+        <button type="submit" class="btn btn-primary w-100" style="width: 100%; padding: 1rem">
+          <i class="fas fa-paper-plane"></i> Send Message
+        </button>
+        <p class="form-note" id="formNote"></p>
+      </form>
+    </div>
+  </section>
+  <!-- Contact Section End -->
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-row">
+      <p>© <span id="year"></span> Abdul Hanan. Designed &amp; built with care.</p>
+      <p>Lahore, Pakistan · Available worldwide</p>
+    </div>
+  </footer>
+
+  <!-- WhatsApp Floating Button -->
+  <button class="wa-float" id="waFloat" aria-label="Contact via WhatsApp">
+    <i class="fa-brands fa-whatsapp"></i>
+    <span class="wa-pulse"></span>
+  </button>
+
+  <!-- WhatsApp Mobile Popup -->
+  <div class="wa-popup" id="waPopup" aria-hidden="true">
+    <div class="wa-popup-backdrop" data-close></div>
+    <div class="wa-popup-card" role="dialog" aria-modal="true">
+      <button class="wa-popup-close" data-close aria-label="Close">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+      <div class="wa-popup-icon"><i class="fa-brands fa-whatsapp"></i></div>
+      <h3>Get in touch</h3>
+      <p>Choose how you'd like to connect — I'll get back to you right away.</p>
+
+      <div class="wa-popup-actions">
+        <a href="tel:+923254145534" class="wa-action wa-call">
+          <i class="fa-solid fa-phone"></i>
+          <div>
+            <span>Call now</span>
+            <small>+92 325 4145534</small>
+          </div>
+        </a>
+        <a href="https://wa.me/923254145534" target="_blank" rel="noopener" class="wa-action wa-chat">
+          <i class="fa-brands fa-whatsapp"></i>
+          <div>
+            <span>WhatsApp</span>
+            <small>Chat in seconds</small>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scroll To Top -->
+  <a href="#home" class="top">
+    <img src="img/Scroll_To_Top.png" alt="Scroll to top" />
+  </a>
+
+  <!-- jQuery CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+    integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+  <!-- Visitor tracking (sends events to admin dashboard) -->
+  <script src="JS/tracker.js"></script>
+
+  <!-- Custom JavaScript -->
+  <script src="JS/script.js"></script>
+</body>
+
+</html>
