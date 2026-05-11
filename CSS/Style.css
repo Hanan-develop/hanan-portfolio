@@ -1357,17 +1357,18 @@ header .navbar ul li a.active i {
     opacity: 0.92;
 }
 
+/* The white badge holding the logo */
 .portfolio .box-container .box .logo-wrap img {
-    max-width: 65%;
-    max-height: 60%;
-    width: auto;
-    height: auto;
+    display: block;
+    width: 72%;
+    max-width: 26rem;
+    height: 12rem;
     object-fit: contain;
-    filter: drop-shadow(0 8px 20px rgba(0, 0, 0, 0.25));
-    background: rgba(255, 255, 255, 0.97);
-    padding: 1.6rem 2rem;
-    border-radius: 1.4rem;
-    box-shadow: 0 14px 30px -10px rgba(0, 0, 0, 0.35);
+    background: #fff;
+    padding: 2rem 2.4rem;
+    border-radius: 1.6rem;
+    box-shadow: 0 18px 36px -12px rgba(0, 0, 0, 0.4),
+                0 4px 12px rgba(0, 0, 0, 0.15);
     transition: transform 0.4s var(--ease);
 }
 
@@ -1380,11 +1381,16 @@ header .navbar ul li a.active i {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 1.2rem;
-    padding: 2.4rem 3rem;
-    background: rgba(255, 255, 255, 0.97);
-    border-radius: 1.4rem;
-    box-shadow: 0 14px 30px -10px rgba(0, 0, 0, 0.35);
+    justify-content: center;
+    gap: 1rem;
+    width: 72%;
+    max-width: 26rem;
+    height: 12rem;
+    padding: 2rem;
+    background: #fff;
+    border-radius: 1.6rem;
+    box-shadow: 0 18px 36px -12px rgba(0, 0, 0, 0.4),
+                0 4px 12px rgba(0, 0, 0, 0.15);
     color: var(--brand, var(--yellow));
     transition: transform 0.4s var(--ease);
 }
@@ -1394,12 +1400,12 @@ header .navbar ul li a.active i {
 }
 
 .portfolio .box-container .box .logo-fallback i {
-    font-size: 4.2rem;
+    font-size: 3.6rem;
 }
 
 .portfolio .box-container .box .logo-fallback span {
     font-family: 'Sora', sans-serif;
-    font-size: 2rem;
+    font-size: 2.2rem;
     font-weight: 700;
     color: #111;
     letter-spacing: -0.01em;
@@ -2198,6 +2204,14 @@ header .navbar ul li a.active i {
     .t-card { padding: 2rem 1.6rem; }
 
     .portfolio .box-container { grid-template-columns: 1fr; }
+    .portfolio .box-container .box .logo-wrap img,
+    .portfolio .box-container .box .logo-fallback {
+        width: 75%;
+        max-width: 24rem;
+        height: 10rem;
+    }
+    .portfolio .box-container .box .logo-fallback i { font-size: 3rem; }
+    .portfolio .box-container .box .logo-fallback span { font-size: 1.8rem; }
 
     .contact .row form, .contact .row .content { padding: 2.2rem; }
 
