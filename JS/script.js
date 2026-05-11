@@ -374,6 +374,121 @@ $(document).ready(function () {
         }
     });
 
+    // ========== Testimonials Auto-Slider ==========
+    var $sliderWrap = $('.testimonials-wrap');
+    if ($sliderWrap.length) {
+        var $slider = $sliderWrap.find('.testimonials-slider');
+        var $track = $('#tSliderTrack');
+        var $slides = $track.find('.t-slide');
+        var $dotsWrap = $('#tDots');
+        var $progressFill = $('.t-progress-fill');
+        var totalSlides = $slides.length;
+        var currentSlide = 0;
+        var autoPlayDelay = 5000; // 5 seconds per slide
+        var autoPlayInterval = null;
+        var progressInterval = null;
+        var progressValue = 0;
+
+        // Build dots
+        for (var i = 0; i < totalSlides; i++) {
+            $dotsWrap.append('<button class="t-dot' + (i === 0 ? ' active' : '') + '" data-index="' + i + '" aria-label="Slide ' + (i + 1) + '"></button>');
+        }
+
+        function goToSlide(index) {
+            currentSlide = (index + totalSlides) % totalSlides;
+            $track.css('transform', 'translateX(-' + (currentSlide * 100) + '%)');
+            $dotsWrap.find('.t-dot').removeClass('active').eq(currentSlide).addClass('active');
+            resetProgress();
+        }
+
+        function nextSlide() { goToSlide(currentSlide + 1); }
+        function prevSlide() { goToSlide(currentSlide - 1); }
+
+        function resetProgress() {
+            progressValue = 0;
+            $progressFill.css('width', '0%');
+        }
+
+        function startAutoPlay() {
+            stopAutoPlay();
+            // Progress fill animation
+            progressInterval = setInterval(function () {
+                progressValue += (100 / (autoPlayDelay / 100));
+                if (progressValue >= 100) progressValue = 100;
+                $progressFill.css('width', progressValue + '%');
+            }, 100);
+            // Slide change
+            autoPlayInterval = setTimeout(function () {
+                nextSlide();
+                startAutoPlay();
+            }, autoPlayDelay);
+        }
+
+        function stopAutoPlay() {
+            if (autoPlayInterval) { clearTimeout(autoPlayInterval); autoPlayInterval = null; }
+            if (progressInterval) { clearInterval(progressInterval); progressInterval = null; }
+        }
+
+        // Arrows
+        $('.t-next').on('click', function () {
+            nextSlide();
+            startAutoPlay();
+        });
+        $('.t-prev').on('click', function () {
+            prevSlide();
+            startAutoPlay();
+        });
+
+        // Dots
+        $dotsWrap.on('click', '.t-dot', function () {
+            var idx = parseInt($(this).data('index'), 10);
+            goToSlide(idx);
+            startAutoPlay();
+        });
+
+        // Pause on hover (desktop only)
+        $sliderWrap.on('mouseenter', function () {
+            stopAutoPlay();
+            $sliderWrap.addClass('paused');
+        }).on('mouseleave', function () {
+            $sliderWrap.removeClass('paused');
+            startAutoPlay();
+        });
+
+        // Touch swipe (mobile)
+        var touchStartX = 0;
+        var touchEndX = 0;
+        $track.on('touchstart', function (e) {
+            touchStartX = e.originalEvent.touches[0].clientX;
+            stopAutoPlay();
+        });
+        $track.on('touchend', function (e) {
+            touchEndX = e.originalEvent.changedTouches[0].clientX;
+            var diff = touchStartX - touchEndX;
+            if (Math.abs(diff) > 50) {
+                if (diff > 0) nextSlide();
+                else prevSlide();
+            }
+            startAutoPlay();
+        });
+
+        // Pause when section is out of view (save resources)
+        if ('IntersectionObserver' in window) {
+            var sliderObserver = new IntersectionObserver(function (entries) {
+                entries.forEach(function (entry) {
+                    if (entry.isIntersecting) {
+                        startAutoPlay();
+                    } else {
+                        stopAutoPlay();
+                    }
+                });
+            }, { threshold: 0.3 });
+            sliderObserver.observe($sliderWrap[0]);
+        } else {
+            startAutoPlay();
+        }
+    }
+
     // ========== Footer year ==========
     $('#year').text(new Date().getFullYear());
 
