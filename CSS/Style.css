@@ -1372,6 +1372,17 @@ header .navbar ul li a.active i {
     transition: transform 0.4s var(--ease);
 }
 
+/* For white/light logos — use dark transparent badge so logo stays visible */
+.portfolio .box-container .box .logo-wrap img.logo-light {
+    background: rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    box-shadow: 0 18px 36px -12px rgba(0, 0, 0, 0.5),
+                inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+}
+
 .portfolio .box-container .box:hover .logo-wrap img {
     transform: scale(1.04);
 }
