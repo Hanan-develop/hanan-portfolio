@@ -72,7 +72,7 @@ body {
 }
 
 section {
-    padding: 7rem 4rem;
+    padding: 6rem 4rem;
     position: relative;
 }
 
@@ -182,7 +182,7 @@ section {
    ========================================================= */
 .heading {
     text-align: center;
-    margin: 0 6rem 4rem;
+    margin: 0 6rem 3rem;
     font-family: 'Sora', sans-serif;
     font-size: 4.4rem;
     font-weight: 700;
@@ -238,7 +238,7 @@ header::-webkit-scrollbar-thumb { background: rgba(249, 202, 36, 0.3); border-ra
 
 header .user {
     margin-bottom: 2rem;
-    margin-top:25rem;
+    margin-top: 29rem;
 }
 
 header .user .avatar-wrap {
@@ -858,7 +858,7 @@ header .navbar ul li a.active i {
    SKILLS SECTION
    ========================================================= */
 .skills {
-    padding: 8rem 4rem;
+    padding: 6rem 4rem;
 }
 
 .skills-wrap {
@@ -869,7 +869,7 @@ header .navbar ul li a.active i {
 }
 
 .skills-bars {
-    padding: 3.5rem;
+    padding: 2.8rem;
     background: rgba(20, 20, 20, 0.55);
     backdrop-filter: blur(16px) saturate(160%);
     -webkit-backdrop-filter: blur(16px) saturate(160%);
@@ -1029,7 +1029,7 @@ header .navbar ul li a.active i {
    SERVICES SECTION
    ========================================================= */
 .services {
-    padding: 8rem 4rem;
+    padding: 6rem 4rem;
 }
 
 .services-grid {
@@ -1039,7 +1039,7 @@ header .navbar ul li a.active i {
 }
 
 .service-card {
-    padding: 3.5rem 2.8rem;
+    padding: 2.8rem 2.4rem;
     background: rgba(20, 20, 20, 0.55);
     backdrop-filter: blur(16px) saturate(160%);
     -webkit-backdrop-filter: blur(16px) saturate(160%);
@@ -1168,7 +1168,7 @@ header .navbar ul li a.active i {
    ========================================================= */
 .education {
     background: transparent;
-    padding: 8rem 4rem;
+    padding: 6rem 4rem;
 }
 
 .timeline {
@@ -1678,7 +1678,7 @@ header .navbar ul li a.active i {
    ========================================================= */
 .section-head {
     text-align: center;
-    margin-bottom: 4rem;
+    margin-bottom: 3rem;
 }
 
 .section-head .heading {
@@ -1888,7 +1888,7 @@ header .navbar ul li a.active i {
    ========================================================= */
 .process {
     position: relative;
-    padding: 8rem 4rem;
+    padding: 6rem 4rem;
 }
 
 .process-grid {
@@ -1900,7 +1900,7 @@ header .navbar ul li a.active i {
 }
 
 .process-step {
-    padding: 3.5rem 2.8rem;
+    padding: 2.8rem 2.4rem;
     background: rgba(20, 20, 20, 0.55);
     backdrop-filter: blur(16px) saturate(160%);
     -webkit-backdrop-filter: blur(16px) saturate(160%);
@@ -2078,20 +2078,44 @@ header .navbar ul li a.active i {
 }
 
 /* =========================================================
-   TESTIMONIALS SECTION
+   TESTIMONIALS SLIDER (Auto-rotating Carousel)
    ========================================================= */
 .testimonials {
-    padding: 8rem 4rem;
+    padding: 6rem 4rem;
 }
 
-.testimonials-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
-    gap: 2rem;
+.testimonials-wrap {
+    position: relative;
+    max-width: 90rem;
+    margin: 0 auto;
 }
 
+.testimonials-slider {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    border-radius: 2.4rem;
+}
+
+.t-slider-track {
+    display: flex;
+    flex-wrap: nowrap;
+    width: 100%;
+    transition: transform 0.6s cubic-bezier(.16, 1, .3, 1);
+    will-change: transform;
+}
+
+.t-slide {
+    flex: 0 0 100%;
+    width: 100%;
+    min-width: 100%;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Card itself */
 .testimonial-card {
-    padding: 3.5rem 2.8rem 3rem;
+    padding: 4rem 4rem 3rem;
     background: rgba(20, 20, 20, 0.55);
     backdrop-filter: blur(16px) saturate(160%);
     -webkit-backdrop-filter: blur(16px) saturate(160%);
@@ -2099,6 +2123,7 @@ header .navbar ul li a.active i {
     border-radius: 2.4rem;
     position: relative;
     overflow: hidden;
+    min-height: 32rem;
     transition: all 0.4s var(--ease);
 }
 
@@ -2110,63 +2135,71 @@ header .navbar ul li a.active i {
     right: 0;
     height: 1px;
     background: linear-gradient(90deg, transparent, var(--yellow), transparent);
-    opacity: 0.4;
+    opacity: 0.5;
 }
 
-.testimonial-card:hover {
-    transform: translateY(-6px);
-    border-color: rgba(249, 202, 36, 0.3);
-    box-shadow: 0 20px 40px -12px rgba(249, 202, 36, 0.25);
-}
-
-.testimonial-card.feature {
-    background: linear-gradient(180deg, rgba(249, 202, 36, 0.08), rgba(20, 20, 20, 0.55));
-    border-color: rgba(249, 202, 36, 0.25);
+/* Decorative big quote in background */
+.testimonial-card::after {
+    content: '"';
+    position: absolute;
+    top: -3rem;
+    right: 2rem;
+    font-family: 'Instrument Serif', serif;
+    font-size: 24rem;
+    color: var(--yellow);
+    opacity: 0.05;
+    line-height: 1;
+    pointer-events: none;
 }
 
 .t-quote {
-    font-size: 3.4rem;
+    font-size: 3rem;
     color: var(--yellow);
     opacity: 0.4;
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
     display: block;
 }
 
 .t-stars {
     display: flex;
     gap: 0.4rem;
-    margin-bottom: 1.5rem;
+    margin-bottom: 2rem;
 }
 
 .t-stars i {
     color: var(--yellow);
-    font-size: 1.6rem;
+    font-size: 1.7rem;
+    filter: drop-shadow(0 0 4px var(--yellow-glow));
 }
 
 .t-text {
-    font-size: 1.55rem;
+    font-size: 1.8rem;
     color: var(--text-soft);
     line-height: 1.65;
-    margin-bottom: 2.4rem;
+    margin-bottom: 2.8rem;
     font-style: italic;
+    position: relative;
+    z-index: 1;
 }
 
 .t-author {
     display: flex;
     align-items: center;
-    gap: 1.4rem;
+    gap: 1.5rem;
     padding-top: 2rem;
     border-top: 1px solid var(--border);
+    position: relative;
+    z-index: 1;
 }
 
 .t-avatar {
-    width: 5rem;
-    height: 5rem;
+    width: 5.4rem;
+    height: 5.4rem;
     border-radius: 50%;
     display: grid;
     place-items: center;
     font-family: 'Sora', sans-serif;
-    font-size: 1.7rem;
+    font-size: 1.8rem;
     font-weight: 700;
     color: #fff;
     flex-shrink: 0;
@@ -2175,7 +2208,7 @@ header .navbar ul li a.active i {
 
 .t-info h4 {
     font-family: 'Sora', sans-serif;
-    font-size: 1.65rem;
+    font-size: 1.7rem;
     font-weight: 600;
     color: var(--text);
     margin-bottom: 0.2rem;
@@ -2183,38 +2216,240 @@ header .navbar ul li a.active i {
 }
 
 .t-info span {
-    font-size: 1.3rem;
+    font-size: 1.35rem;
     color: var(--text-muted);
     font-weight: 500;
 }
 
-.t-badge {
-    position: absolute;
-    top: 2rem;
-    right: 2rem;
-    padding: 0.4rem 1rem;
+/* Slider Controls */
+.t-slider-controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 2.5rem;
+}
+
+.t-arrow {
+    width: 4.8rem;
+    height: 4.8rem;
+    border-radius: 50%;
+    background: rgba(20, 20, 20, 0.6);
+    backdrop-filter: blur(12px);
+    border: 1px solid var(--border);
+    color: var(--text);
+    cursor: pointer;
+    display: grid;
+    place-items: center;
+    font-size: 1.5rem;
+    transition: all 0.3s var(--ease);
+}
+
+.t-arrow:hover {
+    background: var(--yellow);
+    color: #111;
+    border-color: var(--yellow);
+    transform: scale(1.08);
+    box-shadow: 0 8px 18px -4px var(--yellow-glow);
+}
+
+.t-arrow:active {
+    transform: scale(0.95);
+}
+
+/* Dots */
+.t-dots {
+    display: flex;
+    gap: 0.8rem;
+    align-items: center;
+}
+
+.t-dot {
+    width: 1rem;
+    height: 1rem;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.15);
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s var(--ease);
+    padding: 0;
+}
+
+.t-dot:hover {
+    background: rgba(249, 202, 36, 0.5);
+}
+
+.t-dot.active {
+    width: 3rem;
     border-radius: 5rem;
     background: var(--g-yellow);
-    color: #111;
-    font-size: 1.05rem;
-    font-weight: 700;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
+    box-shadow: 0 0 8px var(--yellow-glow);
+}
+
+/* Auto-play progress bar */
+.t-progress {
+    margin-top: 2rem;
+    height: 2px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 5rem;
+    overflow: hidden;
+    max-width: 30rem;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.t-progress-fill {
+    height: 100%;
+    width: 0%;
+    background: var(--g-yellow);
+    border-radius: 5rem;
+    transition: width 0.1s linear;
+    box-shadow: 0 0 6px var(--yellow-glow);
+}
+
+/* Pause indicator when hovered */
+.testimonials-wrap.paused .t-progress-fill {
+    opacity: 0.3;
 }
 
 /* =========================================================
-   FAQ SECTION (Accordion)
+   FAQ SECTION (2-column with category icons)
    ========================================================= */
 .faq {
-    padding: 8rem 4rem;
+    padding: 6rem 4rem;
 }
 
-.faq-wrap {
-    max-width: 80rem;
+.section-subtitle {
+    font-size: 1.6rem;
+    color: var(--text-soft);
+    margin-top: 1.2rem;
+    max-width: 60rem;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.6;
+}
+
+.faq-layout {
+    display: grid;
+    grid-template-columns: 1fr 1.6fr;
+    gap: 2.5rem;
+    max-width: 120rem;
     margin: 0 auto;
+    align-items: start;
+}
+
+/* Sticky aside card */
+.faq-aside {
+    position: sticky;
+    top: 4rem;
+}
+
+.faq-aside-card {
+    padding: 3.2rem 2.6rem;
+    background: linear-gradient(180deg, rgba(249, 202, 36, 0.06), rgba(20, 20, 20, 0.55));
+    backdrop-filter: blur(16px) saturate(160%);
+    -webkit-backdrop-filter: blur(16px) saturate(160%);
+    border: 1px solid rgba(249, 202, 36, 0.2);
+    border-radius: 2.4rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.faq-aside-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--yellow), transparent);
+    opacity: 0.6;
+}
+
+.faq-aside-icon {
+    width: 6rem;
+    height: 6rem;
+    border-radius: 1.6rem;
+    background: var(--g-yellow);
+    color: #111;
+    display: grid;
+    place-items: center;
+    font-size: 2.4rem;
+    margin-bottom: 1.6rem;
+    box-shadow: 0 10px 24px -4px var(--yellow-glow);
+}
+
+.faq-aside-card h3 {
+    font-family: 'Sora', sans-serif;
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 1rem;
+    letter-spacing: -0.02em;
+}
+
+.faq-aside-card p {
+    font-size: 1.5rem;
+    color: var(--text-soft);
+    line-height: 1.6;
+    margin-bottom: 2.2rem;
+}
+
+.faq-quick-links {
     display: flex;
     flex-direction: column;
+    gap: 0.8rem;
+}
+
+.faq-quick {
+    display: flex;
+    align-items: center;
     gap: 1.2rem;
+    padding: 1.2rem 1.4rem;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid var(--border);
+    border-radius: 1.4rem;
+    transition: all 0.3s var(--ease);
+    text-decoration: none;
+}
+
+.faq-quick:hover {
+    background: rgba(249, 202, 36, 0.08);
+    border-color: rgba(249, 202, 36, 0.3);
+    transform: translateX(4px);
+}
+
+.faq-quick > i {
+    width: 3.6rem;
+    height: 3.6rem;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    background: var(--yellow-soft);
+    color: var(--yellow);
+    font-size: 1.5rem;
+    flex-shrink: 0;
+}
+
+.faq-quick div { display: flex; flex-direction: column; }
+.faq-quick span {
+    font-family: 'Sora', sans-serif;
+    font-size: 1.45rem;
+    font-weight: 600;
+    color: var(--text);
+    letter-spacing: -0.005em;
+}
+.faq-quick small {
+    font-size: 1.2rem;
+    color: var(--text-muted);
+    margin-top: 2px;
+}
+
+/* FAQ Items (right column) */
+.faq-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
 }
 
 .faq-item {
@@ -2222,7 +2457,7 @@ header .navbar ul li a.active i {
     backdrop-filter: blur(16px) saturate(160%);
     -webkit-backdrop-filter: blur(16px) saturate(160%);
     border: 1px solid var(--border);
-    border-radius: 1.8rem;
+    border-radius: 1.6rem;
     overflow: hidden;
     transition: all 0.3s var(--ease);
 }
@@ -2239,34 +2474,61 @@ header .navbar ul li a.active i {
 
 .faq-q {
     width: 100%;
-    padding: 2rem 2.4rem;
+    padding: 1.8rem 2rem;
     background: transparent;
     color: var(--text);
-    font-family: 'Sora', sans-serif;
-    font-size: 1.65rem;
-    font-weight: 600;
     text-align: left;
     cursor: pointer;
     display: flex;
     justify-content: space-between;
     align-items: center;
     gap: 1.5rem;
+    transition: color 0.3s;
+}
+
+.faq-q-left {
+    display: flex;
+    align-items: center;
+    gap: 1.4rem;
+    flex: 1;
+}
+
+.faq-num {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-size: 2.2rem;
+    color: var(--yellow);
+    opacity: 0.6;
+    line-height: 1;
+    min-width: 3rem;
+    transition: all 0.3s var(--ease);
+}
+
+.faq-item.active .faq-num {
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+.faq-q-text {
+    font-family: 'Sora', sans-serif;
+    font-size: 1.55rem;
+    font-weight: 600;
     letter-spacing: -0.01em;
     transition: color 0.3s;
 }
 
-.faq-q:hover {
+.faq-q:hover .faq-q-text {
     color: var(--yellow);
 }
 
-.faq-item.active .faq-q {
+.faq-item.active .faq-q-text {
     color: var(--yellow);
 }
 
 .faq-icon {
     flex-shrink: 0;
-    width: 3rem;
-    height: 3rem;
+    width: 3.2rem;
+    height: 3.2rem;
     display: grid;
     place-items: center;
     border-radius: 50%;
@@ -2285,19 +2547,238 @@ header .navbar ul li a.active i {
 .faq-a {
     max-height: 0;
     overflow: hidden;
-    transition: max-height 0.4s var(--ease), padding 0.4s var(--ease);
-    padding: 0 2.4rem;
+    transition: max-height 0.4s var(--ease);
 }
 
 .faq-item.active .faq-a {
-    max-height: 30rem;
-    padding: 0 2.4rem 2rem;
+    max-height: 40rem;
+}
+
+.faq-a-inner {
+    display: flex;
+    gap: 1.4rem;
+    padding: 0 2rem 2rem 5.4rem;
+}
+
+.faq-cat {
+    width: 3.6rem;
+    height: 3.6rem;
+    display: grid;
+    place-items: center;
+    border-radius: 1rem;
+    background: var(--yellow-soft);
+    color: var(--yellow);
+    font-size: 1.5rem;
+    flex-shrink: 0;
+    margin-top: 0.3rem;
 }
 
 .faq-a p {
     font-size: 1.5rem;
     color: var(--text-soft);
     line-height: 1.7;
+    flex: 1;
+}
+
+.faq-a p strong {
+    color: var(--text);
+    font-weight: 600;
+}
+
+/* =========================================================
+   TRUSTED BY BRANDS STRIP
+   ========================================================= */
+.trusted-strip {
+    padding: 3rem 4rem;
+    background: linear-gradient(180deg, transparent, rgba(249, 202, 36, 0.03), transparent);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    min-height: auto;
+    position: relative;
+    overflow: hidden;
+}
+
+.trusted-inner {
+    max-width: 120rem;
+    margin: 0 auto;
+}
+
+.trusted-label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.8rem;
+    font-family: 'Sora', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 1.5rem;
+}
+
+.trusted-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--yellow);
+    box-shadow: 0 0 12px var(--yellow-glow);
+    animation: trustedPulse 2s ease-in-out infinite;
+}
+
+@keyframes trustedPulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+}
+
+.trusted-marquee {
+    overflow: hidden;
+    -webkit-mask-image: linear-gradient(to right, transparent, #000 10%, #000 90%, transparent);
+    mask-image: linear-gradient(to right, transparent, #000 10%, #000 90%, transparent);
+}
+
+.trusted-track {
+    display: flex;
+    gap: 2rem;
+    animation: trustedMarquee 30s linear infinite;
+    width: max-content;
+    align-items: center;
+}
+
+.brand-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.8rem;
+    padding: 1rem 1.8rem;
+    background: rgba(20, 20, 20, 0.55);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--border);
+    border-radius: 5rem;
+    font-family: 'Sora', sans-serif;
+    font-size: 1.45rem;
+    font-weight: 600;
+    color: var(--text);
+    white-space: nowrap;
+    transition: all 0.3s var(--ease);
+}
+
+.brand-pill:hover {
+    background: var(--yellow-soft);
+    border-color: rgba(249, 202, 36, 0.3);
+    transform: translateY(-2px);
+}
+
+.brand-pill i {
+    color: var(--yellow);
+    font-size: 1.4rem;
+}
+
+@keyframes trustedMarquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+}
+
+/* =========================================================
+   ACHIEVEMENTS SECTION
+   ========================================================= */
+.achievements {
+    padding: 6rem 4rem;
+}
+
+.achievements-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+    gap: 1.8rem;
+    max-width: 120rem;
+    margin: 0 auto;
+}
+
+.achievement-card {
+    display: flex;
+    gap: 1.8rem;
+    padding: 2.4rem 2.2rem;
+    background: rgba(20, 20, 20, 0.55);
+    backdrop-filter: blur(16px) saturate(160%);
+    -webkit-backdrop-filter: blur(16px) saturate(160%);
+    border: 1px solid var(--border);
+    border-radius: 2rem;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s var(--ease);
+}
+
+.achievement-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: linear-gradient(180deg, transparent, var(--ach-color, var(--yellow)), transparent);
+    opacity: 0;
+    transition: opacity 0.4s;
+}
+
+.achievement-card:hover {
+    transform: translateY(-4px);
+    border-color: color-mix(in srgb, var(--ach-color, var(--yellow)) 30%, transparent);
+    box-shadow: 0 16px 32px -10px color-mix(in srgb, var(--ach-color, var(--yellow)) 25%, transparent);
+}
+
+.achievement-card:hover::before {
+    opacity: 1;
+}
+
+.ach-icon {
+    width: 5.4rem;
+    height: 5.4rem;
+    border-radius: 1.4rem;
+    background: color-mix(in srgb, var(--ach-color, var(--yellow)) 15%, transparent);
+    border: 1px solid color-mix(in srgb, var(--ach-color, var(--yellow)) 30%, transparent);
+    color: var(--ach-color, var(--yellow));
+    display: grid;
+    place-items: center;
+    font-size: 2.2rem;
+    flex-shrink: 0;
+    transition: all 0.4s var(--ease);
+}
+
+.achievement-card:hover .ach-icon {
+    transform: scale(1.08) rotate(-6deg);
+    background: var(--ach-color, var(--yellow));
+    color: #fff;
+    box-shadow: 0 10px 24px -4px color-mix(in srgb, var(--ach-color, var(--yellow)) 50%, transparent);
+}
+
+.ach-content { flex: 1; }
+
+.ach-year {
+    display: inline-block;
+    padding: 0.3rem 0.9rem;
+    background: var(--ach-color, var(--yellow));
+    color: #fff;
+    border-radius: 5rem;
+    font-family: 'Sora', sans-serif;
+    font-size: 1.15rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.8rem;
+}
+
+.ach-content h3 {
+    font-family: 'Sora', sans-serif;
+    font-size: 1.75rem;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 0.6rem;
+    letter-spacing: -0.01em;
+    line-height: 1.3;
+}
+
+.ach-content p {
+    font-size: 1.4rem;
+    color: var(--text-soft);
+    line-height: 1.55;
 }
 
 /* =========================================================
@@ -2407,7 +2888,7 @@ header .navbar ul li a.active i {
    IMPACT STATS SECTION
    ========================================================= */
 .impact {
-    padding: 10rem 4rem;
+    padding: 7rem 4rem;
     position: relative;
     overflow: hidden;
     z-index: 1;
@@ -2453,7 +2934,7 @@ header .navbar ul li a.active i {
 
 .impact-head {
     text-align: center;
-    margin-bottom: 6rem;
+    margin-bottom: 4rem;
 }
 
 .impact-head .eyebrow {
@@ -2509,7 +2990,7 @@ header .navbar ul li a.active i {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(24rem, 1fr));
     gap: 2rem;
-    margin-bottom: 5rem;
+    margin-bottom: 3rem;
 }
 
 .impact-stat {
@@ -3035,12 +3516,36 @@ header .navbar ul li a.active i {
     }
     .filter-btn .filter-count { display: none; }
 
-    .testimonials-grid { grid-template-columns: 1fr; }
-    .testimonial-card { padding: 2.8rem 2.2rem; }
+    .testimonials-wrap { max-width: 100%; }
+    .testimonial-card { padding: 2.8rem 2rem; min-height: auto; }
+    .t-text { font-size: 1.55rem; margin-bottom: 2rem; }
+    .testimonial-card::after { font-size: 16rem; top: -2rem; right: 1rem; }
+    .t-arrow { width: 4rem; height: 4rem; font-size: 1.3rem; }
+    .t-slider-controls { gap: 1.2rem; margin-top: 2rem; }
 
-    .faq-q { padding: 1.6rem 1.8rem; font-size: 1.5rem; }
-    .faq-a { padding: 0 1.8rem; }
-    .faq-item.active .faq-a { padding: 0 1.8rem 1.6rem; }
+    /* FAQ responsive */
+    .faq-layout { grid-template-columns: 1fr; gap: 2rem; }
+    .faq-aside { position: static; }
+    .faq-aside-card { padding: 2.4rem 2rem; }
+    .faq-q { padding: 1.6rem 1.6rem; }
+    .faq-q-text { font-size: 1.4rem; }
+    .faq-num { font-size: 1.8rem; min-width: 2.4rem; }
+    .faq-q-left { gap: 1rem; }
+    .faq-a-inner { padding: 0 1.6rem 1.6rem 4.6rem; gap: 1rem; }
+    .faq-cat { width: 3rem; height: 3rem; font-size: 1.3rem; }
+
+    /* Achievements responsive */
+    .achievements-grid { grid-template-columns: 1fr; gap: 1.2rem; }
+    .achievement-card { padding: 2rem 1.8rem; gap: 1.4rem; }
+    .ach-icon { width: 4.6rem; height: 4.6rem; font-size: 1.8rem; }
+    .ach-content h3 { font-size: 1.55rem; }
+
+    /* Trusted strip */
+    .trusted-strip { padding: 2.4rem 2rem; }
+    .brand-pill { font-size: 1.3rem; padding: 0.8rem 1.4rem; }
+
+    .faq-q { padding: 1.4rem 1.4rem; }
+    .faq-a-inner { padding: 0 1.4rem 1.4rem 4rem; }
 
     /* Impact stats responsive */
     .impact { padding: 6rem 2rem; }
