@@ -32,6 +32,23 @@
 
 <body>
 
+  <!-- Page Load Transition Overlay -->
+  <div class="page-loader" id="pageLoader">
+    <div class="loader-content">
+      <div class="loader-monogram">
+        <span>AH</span>
+      </div>
+      <div class="loader-bar">
+        <div class="loader-fill"></div>
+      </div>
+      <p class="loader-text">Loading portfolio...</p>
+    </div>
+  </div>
+
+  <!-- Custom Cursor (desktop only) -->
+  <div class="cursor-ring" aria-hidden="true"></div>
+  <div class="cursor-dot" aria-hidden="true"></div>
+
   <!-- Scroll progress bar -->
   <div class="scroll-progress" id="scrollProgress"></div>
 
@@ -69,8 +86,11 @@
         <li><a href="#about"><i class="fa-solid fa-user"></i> <span>About</span></a></li>
         <li><a href="#skills"><i class="fa-solid fa-code"></i> <span>Skills</span></a></li>
         <li><a href="#services"><i class="fa-solid fa-briefcase"></i> <span>Services</span></a></li>
+        <li><a href="#process"><i class="fa-solid fa-diagram-project"></i> <span>Process</span></a></li>
         <li><a href="#education"><i class="fa-solid fa-user-graduate"></i> <span>Education</span></a></li>
         <li><a href="#portfolio"><i class="fa-solid fa-images"></i> <span>Portfolio</span></a></li>
+        <li><a href="#testimonials"><i class="fa-solid fa-quote-left"></i> <span>Reviews</span></a></li>
+        <li><a href="#faq"><i class="fa-solid fa-circle-question"></i> <span>FAQ</span></a></li>
         <li><a href="#contact"><i class="fa-solid fa-phone"></i> <span>Contact</span></a></li>
       </ul>
     </nav>
@@ -350,10 +370,129 @@
   </section>
   <!-- Services Section End -->
 
+  <!-- Process Section Start -->
+  <section class="process" id="process">
+    <div class="section-head reveal">
+      <span class="eyebrow">04 — Process</span>
+      <h1 class="heading">How I <span>Work</span></h1>
+    </div>
+
+    <div class="process-grid">
+      <div class="process-step reveal" data-delay="0">
+        <div class="step-num">01</div>
+        <div class="step-icon"><i class="fa-solid fa-comments"></i></div>
+        <h3>Discover</h3>
+        <p>We start with a conversation about your goals, audience, and vision. I dig into the details that matter — no assumptions, no shortcuts.</p>
+        <div class="step-tag">Day 1-2</div>
+      </div>
+
+      <div class="process-step reveal" data-delay="100">
+        <div class="step-num">02</div>
+        <div class="step-icon"><i class="fa-solid fa-pen-ruler"></i></div>
+        <h3>Design</h3>
+        <p>Wireframes, mockups, and a clear design system tailored to your brand. You see exactly what you're getting before development starts.</p>
+        <div class="step-tag">Day 3-7</div>
+      </div>
+
+      <div class="process-step reveal" data-delay="200">
+        <div class="step-num">03</div>
+        <div class="step-icon"><i class="fa-solid fa-laptop-code"></i></div>
+        <h3>Develop</h3>
+        <p>Clean, performant code with regular previews. You stay in the loop with weekly updates and a live staging environment.</p>
+        <div class="step-tag">Day 8-21</div>
+      </div>
+
+      <div class="process-step reveal" data-delay="300">
+        <div class="step-num">04</div>
+        <div class="step-icon"><i class="fa-solid fa-rocket"></i></div>
+        <h3>Deploy</h3>
+        <p>Launch day. Plus 30 days of post-launch support to fix anything, train you on edits, and keep the momentum going.</p>
+        <div class="step-tag">Day 22+</div>
+      </div>
+    </div>
+
+    <!-- Connecting line for desktop -->
+    <div class="process-line" aria-hidden="true"></div>
+  </section>
+  <!-- Process Section End -->
+
+  <!-- Impact Stats Section Start -->
+  <section class="impact" id="impact">
+    <div class="impact-bg" aria-hidden="true">
+      <div class="impact-grid-bg"></div>
+      <div class="impact-glow"></div>
+    </div>
+
+    <div class="impact-inner">
+      <div class="impact-head reveal">
+        <span class="eyebrow">By the numbers</span>
+        <h2 class="impact-title">
+          Building <em>impact</em> across<br>
+          <span class="gradient-text">brands &amp; industries.</span>
+        </h2>
+        <p class="impact-sub">Numbers that reflect the trust, care, and craft behind every project.</p>
+      </div>
+
+      <div class="impact-stats">
+        <div class="impact-stat reveal" data-delay="0">
+          <div class="impact-icon">
+            <i class="fa-solid fa-rocket"></i>
+          </div>
+          <div class="impact-number">
+            <span data-count="6">0</span><span class="plus">+</span>
+          </div>
+          <h3>Projects Shipped</h3>
+          <p>Across WordPress, Shopify, and custom builds</p>
+        </div>
+
+        <div class="impact-stat reveal" data-delay="100">
+          <div class="impact-icon">
+            <i class="fa-solid fa-globe"></i>
+          </div>
+          <div class="impact-number">
+            <span data-count="5">0</span><span class="plus">+</span>
+          </div>
+          <h3>Brands Served</h3>
+          <p>Fashion, electrical, solar, travel, and tech</p>
+        </div>
+
+        <div class="impact-stat reveal" data-delay="200">
+          <div class="impact-icon">
+            <i class="fa-solid fa-clock"></i>
+          </div>
+          <div class="impact-number">
+            <span data-count="98">0</span><span class="plus">%</span>
+          </div>
+          <h3>On-Time Delivery</h3>
+          <p>Deadlines respected, scope honored</p>
+        </div>
+
+        <div class="impact-stat reveal" data-delay="300">
+          <div class="impact-icon">
+            <i class="fa-solid fa-heart"></i>
+          </div>
+          <div class="impact-number">
+            <span data-count="100">0</span><span class="plus">%</span>
+          </div>
+          <h3>Client Satisfaction</h3>
+          <p>5-star reviews from every client to date</p>
+        </div>
+      </div>
+
+      <div class="impact-cta reveal" data-delay="400">
+        <p>Ready to add your project to the list?</p>
+        <a href="#contact" class="btn btn-primary">
+          <i class="fa-solid fa-paper-plane"></i> Start a project
+        </a>
+      </div>
+    </div>
+  </section>
+  <!-- Impact Stats Section End -->
+
   <!-- Education Section Start -->
   <section id="education" class="education">
     <div class="section-head reveal">
-      <span class="eyebrow">04 — Journey</span>
+      <span class="eyebrow">05 — Journey</span>
       <h1 class="heading">My <span>Education &amp; Experience</span></h1>
     </div>
 
@@ -416,12 +555,32 @@
   <!-- Portfolio Section Start -->
   <section class="portfolio" id="portfolio">
     <div class="section-head reveal">
-      <span class="eyebrow">05 — Work</span>
+      <span class="eyebrow">06 — Work</span>
       <h1 class="heading">My <span>Portfolio</span></h1>
     </div>
 
+    <!-- Filter tabs -->
+    <div class="portfolio-filters reveal" data-delay="100">
+      <button class="filter-btn active" data-filter="all">
+        <i class="fa-solid fa-layer-group"></i> All Projects
+        <span class="filter-count">6</span>
+      </button>
+      <button class="filter-btn" data-filter="wordpress">
+        <i class="fa-brands fa-wordpress"></i> WordPress
+        <span class="filter-count">3</span>
+      </button>
+      <button class="filter-btn" data-filter="shopify">
+        <i class="fa-brands fa-shopify"></i> Shopify
+        <span class="filter-count">2</span>
+      </button>
+      <button class="filter-btn" data-filter="web">
+        <i class="fa-solid fa-code"></i> Web Design
+        <span class="filter-count">1</span>
+      </button>
+    </div>
+
     <div class="box-container">
-      <a href="https://haseenwears.com" target="_blank" rel="noopener" class="box reveal" data-delay="0" style="--brand:#d4a373;--brand-2:#f4e4c1">
+      <a href="https://haseenwears.com" target="_blank" rel="noopener" class="box reveal" data-cat="wordpress" data-delay="0" style="--brand:#d4a373;--brand-2:#f4e4c1">
         <div class="logo-wrap">
           <img src="https://haseenwears.com/wp-content/uploads/2025/11/Haseen-Wears-LogO.png" alt="Haseen Wears" />
         </div>
@@ -433,7 +592,7 @@
         </div>
       </a>
 
-      <a href="https://agatetours.com/" target="_blank" rel="noopener" class="box reveal" data-delay="100" style="--brand:#1e3a5f;--brand-2:#3b6ea5">
+      <a href="https://agatetours.com/" target="_blank" rel="noopener" class="box reveal" data-cat="wordpress" data-delay="100" style="--brand:#1e3a5f;--brand-2:#3b6ea5">
         <div class="logo-wrap">
           <img src="https://agatetours.com/wp-content/uploads/2026/04/AGATE-TOURS-OFFIICIAL-LOGO-DESIGN-12-1.png" alt="Agate Tours" />
         </div>
@@ -445,7 +604,7 @@
         </div>
       </a>
 
-      <a href="https://www.cncelectric.pk/" target="_blank" rel="noopener" class="box reveal" data-delay="200" style="--brand:#d42b2b;--brand-2:#ff5252">
+      <a href="https://www.cncelectric.pk/" target="_blank" rel="noopener" class="box reveal" data-cat="shopify" data-delay="200" style="--brand:#d42b2b;--brand-2:#ff5252">
         <div class="logo-wrap">
           <img src="https://www.cncelectric.pk/cdn/shop/files/CNC-Electric-Pakistan-Logo-PNG-IN-WHITE-300X142.png?v=1758814428&width=300" alt="CNC Electric" class="logo-light" />
         </div>
@@ -457,7 +616,7 @@
         </div>
       </a>
 
-      <a href="https://c-power.pk/" target="_blank" rel="noopener" class="box reveal" data-delay="300" style="--brand:#f06b2a;--brand-2:#ffa64d">
+      <a href="https://c-power.pk/" target="_blank" rel="noopener" class="box reveal" data-cat="shopify" data-delay="300" style="--brand:#f06b2a;--brand-2:#ffa64d">
         <div class="logo-wrap">
           <img src="https://c-power.pk/cdn/shop/files/C-Power-Logo.png?v=1763618963&width=300" alt="C-Power" class="logo-light" />
         </div>
@@ -469,7 +628,7 @@
         </div>
       </a>
 
-      <a href="https://c-solar.pk/" target="_blank" rel="noopener" class="box reveal" data-delay="400" style="--brand:#0db4a7;--brand-2:#febc5a">
+      <a href="https://c-solar.pk/" target="_blank" rel="noopener" class="box reveal" data-cat="web" data-delay="400" style="--brand:#0db4a7;--brand-2:#febc5a">
         <div class="logo-wrap">
           <div class="logo-fallback">
             <i class="fa-solid fa-solar-panel"></i>
@@ -484,7 +643,7 @@
         </div>
       </a>
 
-      <a href="https://cognitivesolutions.com.pk/" target="_blank" rel="noopener" class="box reveal" data-delay="500" style="--brand:#1a1a3e;--brand-2:#5a4fcf">
+      <a href="https://cognitivesolutions.com.pk/" target="_blank" rel="noopener" class="box reveal" data-cat="wordpress" data-delay="500" style="--brand:#1a1a3e;--brand-2:#5a4fcf">
         <div class="logo-wrap">
           <img src="https://cognitivesolutions.com.pk/wp-content/uploads/2025/11/Cognitive-Solutions-Logo.png" alt="Cognitive Solutions" />
         </div>
@@ -499,10 +658,150 @@
   </section>
   <!-- Portfolio Section End -->
 
+  <!-- Testimonials Section Start -->
+  <section class="testimonials" id="testimonials">
+    <div class="section-head reveal">
+      <span class="eyebrow">07 — Reviews</span>
+      <h1 class="heading">Client <span>Testimonials</span></h1>
+    </div>
+
+    <div class="testimonials-grid">
+      <div class="testimonial-card reveal" data-delay="0">
+        <i class="fa-solid fa-quote-left t-quote"></i>
+        <div class="t-stars">
+          <i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star"></i>
+        </div>
+        <p class="t-text">Abdul Hanan delivered our Shopify store ahead of schedule. The attention to detail and clean code made future updates easy. Highly recommend for any e-commerce project.</p>
+        <div class="t-author">
+          <div class="t-avatar" style="background: linear-gradient(135deg, #d42b2b, #ff5252)">AH</div>
+          <div class="t-info">
+            <h4>Awais Hassan</h4>
+            <span>Director, CNC Electric Pakistan</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-card reveal feature" data-delay="100">
+        <i class="fa-solid fa-quote-left t-quote"></i>
+        <div class="t-stars">
+          <i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star"></i>
+        </div>
+        <p class="t-text">Working with Hanan was a great experience. He understood the brand vision instantly and built a WordPress site that perfectly captures our identity. Fast, responsive, and professional throughout.</p>
+        <div class="t-author">
+          <div class="t-avatar" style="background: linear-gradient(135deg, #d4a373, #f4e4c1); color: #6b4423;">HW</div>
+          <div class="t-info">
+            <h4>Haseen Wears Team</h4>
+            <span>Fashion Brand, Pakistan</span>
+          </div>
+        </div>
+        <span class="t-badge">Featured</span>
+      </div>
+
+      <div class="testimonial-card reveal" data-delay="200">
+        <i class="fa-solid fa-quote-left t-quote"></i>
+        <div class="t-stars">
+          <i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star"></i>
+        </div>
+        <p class="t-text">Hanan built our tour company's website with great care. The booking flow is smooth and the design is beautiful. Communication was clear from day one. Will work with him again.</p>
+        <div class="t-author">
+          <div class="t-avatar" style="background: linear-gradient(135deg, #1e3a5f, #3b6ea5)">AT</div>
+          <div class="t-info">
+            <h4>Agate Tours</h4>
+            <span>Travel Company</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Testimonials Section End -->
+
+  <!-- FAQ Section Start -->
+  <section class="faq" id="faq">
+    <div class="section-head reveal">
+      <span class="eyebrow">08 — FAQ</span>
+      <h1 class="heading">Frequently <span>Asked</span></h1>
+    </div>
+
+    <div class="faq-wrap">
+      <div class="faq-item reveal" data-delay="0">
+        <button class="faq-q">
+          <span>What services do you offer?</span>
+          <i class="fa-solid fa-plus faq-icon"></i>
+        </button>
+        <div class="faq-a">
+          <p>I specialize in WordPress development, Shopify design, and frontend development. This includes custom theme work, plugin integration, e-commerce setup, responsive design, and basic SEO optimization with Yoast.</p>
+        </div>
+      </div>
+
+      <div class="faq-item reveal" data-delay="50">
+        <button class="faq-q">
+          <span>How long does a typical project take?</span>
+          <i class="fa-solid fa-plus faq-icon"></i>
+        </button>
+        <div class="faq-a">
+          <p>Simple landing pages take 1-2 weeks. Standard WordPress/Shopify sites take 3-4 weeks. Complex e-commerce stores or custom builds can take 6-8 weeks depending on scope. I always share a clear timeline upfront.</p>
+        </div>
+      </div>
+
+      <div class="faq-item reveal" data-delay="100">
+        <button class="faq-q">
+          <span>What's your pricing structure?</span>
+          <i class="fa-solid fa-plus faq-icon"></i>
+        </button>
+        <div class="faq-a">
+          <p>I offer fixed-price quotes after a discovery call so there are no surprises. Pricing depends on project scope, complexity, and timeline. Get in touch for a free quote — I'll respond within a day.</p>
+        </div>
+      </div>
+
+      <div class="faq-item reveal" data-delay="150">
+        <button class="faq-q">
+          <span>Do you provide post-launch support?</span>
+          <i class="fa-solid fa-plus faq-icon"></i>
+        </button>
+        <div class="faq-a">
+          <p>Yes — every project includes 30 days of free post-launch support to fix bugs, train you on edits, and ensure everything runs smoothly. After that, I offer affordable maintenance retainers.</p>
+        </div>
+      </div>
+
+      <div class="faq-item reveal" data-delay="200">
+        <button class="faq-q">
+          <span>Can you work with international clients?</span>
+          <i class="fa-solid fa-plus faq-icon"></i>
+        </button>
+        <div class="faq-a">
+          <p>Absolutely. I'm based in Lahore, Pakistan but work with clients worldwide. Communication is via WhatsApp, email, or Zoom — whatever works best for you. I accommodate different time zones for meetings.</p>
+        </div>
+      </div>
+
+      <div class="faq-item reveal" data-delay="250">
+        <button class="faq-q">
+          <span>What if I need changes after delivery?</span>
+          <i class="fa-solid fa-plus faq-icon"></i>
+        </button>
+        <div class="faq-a">
+          <p>Minor tweaks are always free during the first 30 days. For larger changes or new features, I offer transparent hourly rates. You'll always know the cost before I start any new work.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- FAQ Section End -->
+
   <!-- Contact Section Start -->
   <section class="contact" id="contact">
     <div class="section-head reveal">
-      <span class="eyebrow">06 — Contact</span>
+      <span class="eyebrow">09 — Contact</span>
       <h1 class="heading"><span>Contact </span>Me</h1>
     </div>
 
