@@ -1064,6 +1064,134 @@ $(document).ready(function () {
         showToast('Welcome! Try Ctrl+K to search', 'success');
     }, 2000);
 
+    // ========== Particle Background (Hero) ==========
+    var canvas = document.getElementById('particlesCanvas');
+    if (canvas && canvas.getContext) {
+        var ctx = canvas.getContext('2d');
+        var particles = [];
+        var animationId = null;
+
+        function resizeCanvas() {
+            var rect = canvas.parentElement.getBoundingClientRect();
+            canvas.width = rect.width;
+            canvas.height = rect.height;
+        }
+
+        function createParticles() {
+            particles = [];
+            var count = Math.min(60, Math.floor(canvas.width / 25));
+            for (var i = 0; i < count; i++) {
+                particles.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height,
+                    vx: (Math.random() - 0.5) * 0.3,
+                    vy: (Math.random() - 0.5) * 0.3,
+                    r: Math.random() * 1.6 + 0.4,
+                    opacity: Math.random() * 0.5 + 0.2
+                });
+            }
+        }
+
+        function drawParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            // Draw connections between nearby particles
+            for (var i = 0; i < particles.length; i++) {
+                for (var j = i + 1; j < particles.length; j++) {
+                    var dx = particles[i].x - particles[j].x;
+                    var dy = particles[i].y - particles[j].y;
+                    var dist = Math.sqrt(dx * dx + dy * dy);
+                    if (dist < 120) {
+                        ctx.beginPath();
+                        ctx.strokeStyle = 'rgba(249, 202, 36, ' + (0.12 * (1 - dist / 120)) + ')';
+                        ctx.lineWidth = 1;
+                        ctx.moveTo(particles[i].x, particles[i].y);
+                        ctx.lineTo(particles[j].x, particles[j].y);
+                        ctx.stroke();
+                    }
+                }
+            }
+
+            // Draw particles
+            for (var k = 0; k < particles.length; k++) {
+                var p = particles[k];
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+                ctx.fillStyle = 'rgba(249, 202, 36, ' + p.opacity + ')';
+                ctx.fill();
+
+                // Update position
+                p.x += p.vx;
+                p.y += p.vy;
+
+                // Bounce off edges
+                if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
+                if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
+            }
+
+            animationId = requestAnimationFrame(drawParticles);
+        }
+
+        function initParticles() {
+            resizeCanvas();
+            createParticles();
+            if (animationId) cancelAnimationFrame(animationId);
+            drawParticles();
+        }
+
+        initParticles();
+
+        // Reinitialize on window resize (debounced)
+        var resizeTimer;
+        $(window).on('resize', function () {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(initParticles, 200);
+        });
+
+        // Pause when not visible (save CPU)
+        if ('IntersectionObserver' in window) {
+            var canvasObs = new IntersectionObserver(function (entries) {
+                entries.forEach(function (entry) {
+                    if (entry.isIntersecting) {
+                        if (!animationId) drawParticles();
+                    } else {
+                        if (animationId) {
+                            cancelAnimationFrame(animationId);
+                            animationId = null;
+                        }
+                    }
+                });
+            }, { threshold: 0.1 });
+            canvasObs.observe(canvas);
+        }
+    }
+
+    // ========== 3D Tilt Effect on Cards ==========
+    var tiltSelector = '.service-card, .process-step, .impact-stat, .achievement-card, .cert-card, .quick-card';
+
+    // Only on desktop (hover capable, fine pointer)
+    if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+        $(document).on('mousemove', tiltSelector, function (e) {
+            var $card = $(this);
+            var rect = this.getBoundingClientRect();
+            var x = e.clientX - rect.left;
+            var y = e.clientY - rect.top;
+            var centerX = rect.width / 2;
+            var centerY = rect.height / 2;
+            var rotateX = ((y - centerY) / centerY) * -3; // max 3deg
+            var rotateY = ((x - centerX) / centerX) * 3;
+
+            // Preserve existing transforms (translateY for hover)
+            var existing = $card.css('transform');
+            // Compose new tilt with hover translateY
+            $card.css('transform', 'perspective(1000px) rotateX(' + rotateX.toFixed(1) + 'deg) rotateY(' + rotateY.toFixed(1) + 'deg) translateY(-4px)');
+        });
+
+        $(document).on('mouseleave', tiltSelector, function () {
+            $(this).css('transform', '');
+        });
+    }
+
     // ========== Footer year ==========
     $('#year').text(new Date().getFullYear());
 
