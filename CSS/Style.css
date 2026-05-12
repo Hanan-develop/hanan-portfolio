@@ -21,7 +21,407 @@
     --g-text: linear-gradient(135deg, #ffd93d 0%, #f9ca24 60%, #f0a500 100%);
     --ease: cubic-bezier(.2, .8, .2, 1);
     --ease-out: cubic-bezier(.16, 1, .3, 1);
+    --card-bg: rgba(20, 20, 20, 0.55);
 }
+
+/* Light theme */
+body.light-theme {
+    --bg: #f5f5f7;
+    --bg-2: #ebebee;
+    --bg-card: #ffffff;
+    --bg-elev: #ffffff;
+    --text: #0d0d0d;
+    --text-soft: #3a3a3a;
+    --text-muted: #6b6b75;
+    --border: rgba(0, 0, 0, 0.08);
+    --border-strong: rgba(0, 0, 0, 0.14);
+    --yellow-soft: rgba(249, 202, 36, 0.18);
+    --card-bg: rgba(255, 255, 255, 0.7);
+}
+
+body.light-theme html::-webkit-scrollbar-track { background: #ddd; }
+body.light-theme .grain { display: none; }
+
+/* === LIGHT THEME OVERRIDES === */
+
+/* Sidebar */
+body.light-theme header {
+    background: rgba(255, 255, 255, 0.85);
+    border-right: 1px solid var(--border);
+}
+
+body.light-theme header .navbar ul li a {
+    background: rgba(0, 0, 0, 0.03);
+    color: var(--text-soft);
+}
+
+body.light-theme header .navbar ul li a:hover {
+    background: rgba(249, 202, 36, 0.15);
+    color: #111;
+}
+
+body.light-theme .sidebar-status {
+    background: rgba(0, 0, 0, 0.03);
+}
+
+body.light-theme .sidebar-social a {
+    background: rgba(0, 0, 0, 0.03);
+    color: var(--text-soft);
+}
+
+/* Sidebar avatar monogram — keep dark for contrast */
+body.light-theme header .user img,
+body.light-theme header .user .avatar-img,
+body.light-theme header .user .avatar-monogram {
+    background: radial-gradient(circle at 30% 30%, #1f1f1f 0%, #0d0d0d 100%);
+    border-color: #f5f5f7;
+}
+
+/* Background blobs — lighter in light mode */
+body.light-theme .glow { opacity: 0.08; }
+
+/* Cards — solid white with shadow */
+body.light-theme .about .row .info,
+body.light-theme .about .row .counter .box,
+body.light-theme .skills-bars,
+body.light-theme .skill-tile,
+body.light-theme .service-card,
+body.light-theme .process-step,
+body.light-theme .impact-stat,
+body.light-theme .testimonial-card,
+body.light-theme .faq-item,
+body.light-theme .faq-aside-card,
+body.light-theme .achievement-card,
+body.light-theme .contact .row .content,
+body.light-theme .contact .row form,
+body.light-theme .t-card,
+body.light-theme .tech-grid-wrap {
+    background: #ffffff;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04), 0 8px 24px rgba(0, 0, 0, 0.04);
+}
+
+body.light-theme .service-card.feature,
+body.light-theme .faq-aside-card,
+body.light-theme .t-card.highlight {
+    background: linear-gradient(180deg, rgba(249, 202, 36, 0.08), #ffffff);
+}
+
+body.light-theme .faq-item.active {
+    background: linear-gradient(180deg, rgba(249, 202, 36, 0.05), #ffffff);
+}
+
+/* Card top gradient borders - keep but softer */
+body.light-theme .about .row .info::before,
+body.light-theme .skills-bars::before,
+body.light-theme .service-card::before,
+body.light-theme .process-step::before,
+body.light-theme .testimonial-card::before,
+body.light-theme .faq-aside-card::before,
+body.light-theme .contact .row .content::before,
+body.light-theme .contact .row form::before {
+    opacity: 0.7;
+}
+
+/* Skill bar background — lighter */
+body.light-theme .skill-bar {
+    background: rgba(0, 0, 0, 0.06);
+}
+
+/* Form inputs */
+body.light-theme .form-field input,
+body.light-theme .form-field textarea {
+    background: rgba(0, 0, 0, 0.02);
+    color: var(--text);
+}
+
+body.light-theme .form-field input:focus,
+body.light-theme .form-field textarea:focus {
+    background: #ffffff;
+}
+
+body.light-theme .field input,
+body.light-theme .field textarea,
+body.light-theme .contact .row form .box {
+    background: rgba(0, 0, 0, 0.03);
+    color: var(--text);
+}
+
+/* Hero badge */
+body.light-theme .hero-badge,
+body.light-theme .home-badge {
+    background: rgba(255, 255, 255, 0.9);
+}
+
+/* Filter buttons */
+body.light-theme .filter-btn {
+    background: rgba(0, 0, 0, 0.04);
+    color: var(--text-soft);
+}
+
+body.light-theme .filter-btn .filter-count {
+    background: rgba(0, 0, 0, 0.08);
+    color: var(--text-muted);
+}
+
+/* Buttons */
+body.light-theme .btn-ghost {
+    background: rgba(0, 0, 0, 0.04);
+    color: var(--text);
+}
+
+body.light-theme .btn-ghost:hover {
+    background: rgba(249, 202, 36, 0.12);
+}
+
+body.light-theme .btn-primary {
+    color: #111;
+}
+
+/* Navbar CTA */
+body.light-theme .nav-cta {
+    background: #111;
+    color: #fff;
+}
+
+/* Footer */
+body.light-theme .footer {
+    background: rgba(255, 255, 255, 0.6);
+    border-top: 1px solid var(--border);
+}
+
+/* Marquee */
+body.light-theme .marquee-track span,
+body.light-theme .brand-pill {
+    color: var(--text);
+}
+
+body.light-theme .brand-pill {
+    background: rgba(0, 0, 0, 0.04);
+}
+
+/* WhatsApp popup */
+body.light-theme .wa-popup-card {
+    background: rgba(255, 255, 255, 0.95);
+}
+
+body.light-theme .wa-popup-close {
+    background: rgba(0, 0, 0, 0.05);
+    color: var(--text);
+}
+
+body.light-theme .wa-popup-close:hover {
+    background: rgba(0, 0, 0, 0.1);
+}
+
+body.light-theme .wa-action {
+    background: rgba(0, 0, 0, 0.03);
+}
+
+body.light-theme .wa-action:hover {
+    background: #ffffff;
+}
+
+/* Slider controls */
+body.light-theme .t-arrow {
+    background: rgba(255, 255, 255, 0.9);
+    color: var(--text);
+}
+
+body.light-theme .t-dot {
+    background: rgba(0, 0, 0, 0.15);
+}
+
+/* Slider quote bg */
+body.light-theme .testimonial-card::after {
+    color: var(--yellow);
+    opacity: 0.1;
+}
+
+/* Sidebar status — keep readable */
+body.light-theme .sidebar-status strong {
+    color: var(--text);
+}
+
+/* Timeline cards */
+body.light-theme .t-card {
+    background: #ffffff;
+    border-left-color: var(--yellow);
+}
+
+/* Education timeline line */
+body.light-theme .timeline-line {
+    background: linear-gradient(to bottom, transparent, var(--yellow), var(--yellow), transparent);
+    opacity: 0.3;
+}
+
+body.light-theme .t-dot {
+    background: #fff;
+}
+
+/* Project mocks */
+body.light-theme .mock-line { background: rgba(0, 0, 0, 0.08); }
+
+/* Easter modal */
+body.light-theme .easter-close {
+    background: rgba(0, 0, 0, 0.05);
+    color: var(--text);
+}
+
+body.light-theme .easter-close:hover {
+    background: rgba(0, 0, 0, 0.1);
+}
+
+/* Mobile menu hamburger */
+body.light-theme #menu {
+    background: rgba(255, 255, 255, 0.9);
+    color: #d4a423;
+    border-color: var(--border-strong);
+}
+
+/* Scroll progress bar visible in light too */
+body.light-theme .scroll-progress {
+    box-shadow: 0 0 14px rgba(249, 202, 36, 0.6);
+}
+
+/* Tech logos in light mode */
+body.light-theme .tech-logo {
+    background: rgba(0, 0, 0, 0.03);
+}
+
+body.light-theme .tech-logo:hover {
+    background: rgba(249, 202, 36, 0.12);
+}
+
+/* GitHub icon — was white, needs to be dark in light mode */
+body.light-theme .tech-logo i[style*="color:#fff"] {
+    color: #111 !important;
+}
+
+/* Status bar in light */
+body.light-theme .status-divider {
+    background: rgba(0, 0, 0, 0.12);
+}
+
+body.light-theme .status-label {
+    color: var(--text);
+}
+
+/* About card icons */
+body.light-theme .about-card,
+body.light-theme .about-card-icon {
+    background: var(--yellow-soft);
+}
+
+body.light-theme .skill-tile {
+    background: #ffffff;
+}
+
+/* Process step icons stay yellow gradient */
+
+/* FAQ icons */
+body.light-theme .faq-icon {
+    background: rgba(249, 202, 36, 0.15);
+}
+
+body.light-theme .faq-cat {
+    background: rgba(249, 202, 36, 0.15);
+}
+
+/* FAQ quick links */
+body.light-theme .faq-quick {
+    background: rgba(0, 0, 0, 0.03);
+}
+
+body.light-theme .faq-quick:hover {
+    background: rgba(249, 202, 36, 0.12);
+}
+
+/* Achievements year pill - keep colored */
+
+/* Avatar text fixes */
+body.light-theme .t-avatar {
+    box-shadow: 0 6px 14px -4px rgba(0, 0, 0, 0.15);
+}
+
+/* Active nav link text in dark */
+body.light-theme header .navbar ul li a.active {
+    color: #111;
+}
+
+/* Process line stays */
+/* Section indicator in light */
+body.light-theme .section-indicator { border-color: var(--border); }
+body.light-theme .si-dot::before {
+    background: var(--yellow);
+    color: #111;
+}
+
+/* FAB action tooltips */
+body.light-theme .fab-action::after {
+    background: #111;
+    color: #fff;
+    border-color: var(--border-strong);
+}
+
+/* FAB action background in light */
+body.light-theme .fab-action {
+    background: #ffffff;
+    border: 1px solid var(--border-strong);
+    color: #d4a423;
+}
+
+/* Tech grid title icon */
+body.light-theme .tech-grid-title { color: var(--text); }
+
+/* Hero "I'm Abdul Hanan" — gradient still works on light bg */
+/* Tech marquee in hero */
+body.light-theme .tech-marquee { border-color: var(--border); }
+body.light-theme .marquee-label { color: var(--text-muted); }
+
+/* Skill text */
+body.light-theme .skill-top { color: var(--text-soft); }
+
+/* Service list items */
+body.light-theme .service-card ul li { color: var(--text-soft); }
+
+/* Contact info value */
+body.light-theme .contact .row .content .info h3 { color: var(--text-soft); }
+
+/* Trusted strip */
+body.light-theme .trusted-strip {
+    background: linear-gradient(180deg, transparent, rgba(249, 202, 36, 0.06), transparent);
+}
+
+/* Service feature card */
+body.light-theme .service-card.feature {
+    border-color: rgba(249, 202, 36, 0.4);
+}
+
+/* Hero pulse status — keep green */
+/* Status LED colors are inline styles, OK */
+
+/* FAB trigger button bottom — make sure visible */
+body.light-theme .fab-trigger {
+    color: #111;
+}
+
+/* Toast in light theme */
+body.light-theme .toast {
+    border-color: rgba(0, 0, 0, 0.08);
+    box-shadow: 0 14px 32px -8px rgba(0, 0, 0, 0.15);
+}
+
+/* Scrollbar */
+body.light-theme html::-webkit-scrollbar-track { background: #e5e5ea; }
+body.light-theme html::-webkit-scrollbar-thumb { background: var(--g-yellow); }
+
+/* WhatsApp floating button — same green looks fine */
+
+/* Logo dot accent */
+body.light-theme .dot { color: var(--yellow); }
+
+/* Top scroll button in light */
+body.light-theme .top img { filter: drop-shadow(0 4px 10px rgba(249, 202, 36, 0.4)); }
 
 /* =========================================================
    RESET & BASE
@@ -46,6 +446,26 @@ html {
     font-size: 60%;
     overflow-x: hidden;
     scroll-behavior: smooth;
+}
+
+/* Smooth theme transitions */
+body,
+body * {
+    transition-property: background-color, color, border-color, box-shadow;
+    transition-duration: 0.35s;
+    transition-timing-function: var(--ease);
+}
+
+/* Don't add transitions on these (would break animations) */
+.cursor-ring, .cursor-dot,
+.page-loader, .loader-fill,
+.glow, .blob,
+.marquee-track, .trusted-track,
+.skill-bar span, .scroll-progress,
+.rotating-svg, .pulse-dot::after,
+.status-led, .pulse::after,
+.t-progress-fill, .typed-text {
+    transition: none !important;
 }
 
 html::-webkit-scrollbar {
@@ -238,7 +658,6 @@ header::-webkit-scrollbar-thumb { background: rgba(249, 202, 36, 0.3); border-ra
 
 header .user {
     margin-bottom: 2rem;
-    margin-top: 29rem;
 }
 
 header .user .avatar-wrap {
@@ -2784,7 +3203,6 @@ header .navbar ul li a.active i {
 /* =========================================================
    PAGE LOAD TRANSITION
    ========================================================= */
-.page-loader {
     position: fixed;
     inset: 0;
     z-index: 10000;
@@ -3113,6 +3531,767 @@ header .navbar ul li a.active i {
 }
 
 /* =========================================================
+   STATUS BAR (top)
+   ========================================================= */
+.status-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 999;
+    background: rgba(10, 10, 10, 0.85);
+    backdrop-filter: blur(20px) saturate(160%);
+    -webkit-backdrop-filter: blur(20px) saturate(160%);
+    border-bottom: 1px solid var(--border);
+    transition: transform 0.4s var(--ease), background 0.3s;
+}
+
+body.light-theme .status-bar {
+    background: rgba(255, 255, 255, 0.85);
+}
+
+.status-bar.hidden { transform: translateY(-100%); }
+
+.status-bar-inner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.6rem;
+    padding: 0.7rem 2rem;
+    padding-left: calc(32rem + 2rem); /* match sidebar width */
+    max-width: 100%;
+    font-family: 'Sora', sans-serif;
+    font-size: 1.25rem;
+    color: var(--text-soft);
+    font-weight: 500;
+    flex-wrap: wrap;
+}
+
+.status-item {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    white-space: nowrap;
+}
+
+.status-item i { color: var(--yellow); font-size: 1.2rem; }
+
+.status-led {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #22c55e;
+    box-shadow: 0 0 8px rgba(34, 197, 94, 0.6);
+    animation: ledPulse 1.8s ease-in-out infinite;
+}
+
+@keyframes ledPulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+.status-label { color: var(--text); font-weight: 600; }
+
+.status-divider {
+    width: 1px;
+    height: 12px;
+    background: var(--border-strong);
+}
+
+.status-cta a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.3rem 1rem;
+    background: var(--g-yellow);
+    color: #111;
+    border-radius: 5rem;
+    font-weight: 700;
+    font-size: 1.2rem;
+    transition: all 0.3s var(--ease);
+}
+
+.status-cta a:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px var(--yellow-glow);
+}
+
+/* Push body down for status bar */
+body { padding-top: 3.4rem; }
+
+/* Move navbar/sidebar below status bar */
+header { padding-top: 4rem !important; }
+
+/* =========================================================
+   SECTION INDICATOR (right side dots)
+   ========================================================= */
+.section-indicator {
+    position: fixed;
+    top: 50%;
+    right: 1.4rem;
+    transform: translateY(-50%);
+    z-index: 75;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    padding: 1.2rem 0.6rem;
+    background: rgba(20, 20, 20, 0.55);
+    backdrop-filter: blur(14px) saturate(160%);
+    -webkit-backdrop-filter: blur(14px) saturate(160%);
+    border: 1px solid var(--border);
+    border-radius: 5rem;
+    transition: opacity 0.4s, transform 0.4s var(--ease);
+}
+
+body.light-theme .section-indicator {
+    background: rgba(255, 255, 255, 0.7);
+}
+
+.si-dot {
+    position: relative;
+    display: block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+    transition: all 0.3s var(--ease);
+    text-decoration: none;
+}
+
+body.light-theme .si-dot { background: rgba(0, 0, 0, 0.18); }
+
+.si-dot:hover {
+    background: var(--yellow);
+    transform: scale(1.4);
+}
+
+.si-dot.active {
+    background: var(--yellow);
+    box-shadow: 0 0 8px var(--yellow-glow);
+    transform: scale(1.3);
+}
+
+/* Tooltip label */
+.si-dot::before {
+    content: attr(data-label);
+    position: absolute;
+    right: calc(100% + 1rem);
+    top: 50%;
+    transform: translateY(-50%) translateX(8px);
+    padding: 0.4rem 0.9rem;
+    background: var(--yellow);
+    color: #111;
+    border-radius: 5rem;
+    font-family: 'Sora', sans-serif;
+    font-size: 1.15rem;
+    font-weight: 700;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.25s var(--ease);
+    box-shadow: 0 4px 12px var(--yellow-glow);
+}
+
+.si-dot:hover::before {
+    opacity: 1;
+    transform: translateY(-50%) translateX(0);
+}
+
+/* =========================================================
+   FLOATING ACTION MENU (FAB)
+   ========================================================= */
+.fab {
+    position: fixed;
+    bottom: 9rem;
+    right: 2.5rem;
+    z-index: 78;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.fab-trigger {
+    width: 5.4rem;
+    height: 5.4rem;
+    border-radius: 50%;
+    background: var(--g-yellow);
+    color: #111;
+    cursor: pointer;
+    display: grid;
+    place-items: center;
+    position: relative;
+    box-shadow: 0 10px 24px -4px var(--yellow-glow);
+    transition: transform 0.3s var(--ease);
+}
+
+.fab-trigger:hover { transform: scale(1.08); }
+
+/* Notification badge */
+.fab-badge {
+    position: absolute;
+    top: -4px;
+    right: -4px;
+    min-width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: #ef4444;
+    color: #fff;
+    font-family: 'Sora', sans-serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+    display: grid;
+    place-items: center;
+    padding: 0 6px;
+    box-shadow: 0 4px 10px rgba(239, 68, 68, 0.5);
+    animation: badgePulse 2s ease-in-out infinite;
+}
+
+.fab-badge.hidden { display: none; }
+
+@keyframes badgePulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.15); }
+}
+
+body.light-theme .fab-badge {
+    border: 2px solid #fff;
+}
+
+.fab-trigger i {
+    font-size: 2rem;
+    position: absolute;
+    transition: all 0.3s var(--ease);
+}
+
+.fab-icon-close { opacity: 0; transform: rotate(-90deg); }
+.fab.open .fab-icon-plus { opacity: 0; transform: rotate(90deg); }
+.fab.open .fab-icon-close { opacity: 1; transform: rotate(0); }
+.fab.open .fab-trigger { transform: rotate(90deg); }
+
+.fab-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(20px) scale(0.85);
+    transition: all 0.4s var(--ease);
+}
+
+.fab.open .fab-actions {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0) scale(1);
+}
+
+.fab-action {
+    position: relative;
+    width: 4.6rem;
+    height: 4.6rem;
+    border-radius: 50%;
+    background: rgba(20, 20, 20, 0.85);
+    backdrop-filter: blur(12px);
+    border: 1px solid var(--border-strong);
+    color: var(--yellow);
+    cursor: pointer;
+    display: grid;
+    place-items: center;
+    font-size: 1.5rem;
+    text-decoration: none;
+    transition: all 0.3s var(--ease);
+}
+
+body.light-theme .fab-action {
+    background: rgba(255, 255, 255, 0.95);
+    color: #d4a423;
+}
+
+.fab-action:hover {
+    background: var(--yellow);
+    color: #111;
+    transform: scale(1.1);
+    box-shadow: 0 6px 16px var(--yellow-glow);
+}
+
+/* Tooltips */
+.fab-action::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    right: calc(100% + 1rem);
+    top: 50%;
+    transform: translateY(-50%) translateX(8px);
+    padding: 0.4rem 0.9rem;
+    background: #1a1a1a;
+    color: #fff;
+    border-radius: 5rem;
+    font-family: 'Sora', sans-serif;
+    font-size: 1.15rem;
+    font-weight: 600;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.25s var(--ease);
+    border: 1px solid var(--border-strong);
+}
+
+.fab-action:hover::after {
+    opacity: 1;
+    transform: translateY(-50%) translateX(0);
+}
+
+/* Theme toggle icons */
+.theme-icon-light { display: none; }
+body.light-theme .theme-icon-dark { display: none; }
+body.light-theme .theme-icon-light { display: inline-block; }
+
+/* Sound toggle icons */
+.sound-icon-off { display: none; }
+body.sound-muted .sound-icon-on { display: none; }
+body.sound-muted .sound-icon-off { display: inline-block; }
+
+/* =========================================================
+   TOAST NOTIFICATIONS
+   ========================================================= */
+.toast-container {
+    position: fixed;
+    bottom: 3rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 200;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+    pointer-events: none;
+}
+
+.toast {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.2rem 1.8rem;
+    background: rgba(20, 20, 20, 0.92);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--border-strong);
+    border-radius: 5rem;
+    color: var(--text);
+    font-family: 'Sora', sans-serif;
+    font-size: 1.4rem;
+    font-weight: 600;
+    box-shadow: 0 14px 32px -8px rgba(0, 0, 0, 0.4);
+    pointer-events: auto;
+    transform: translateY(20px);
+    opacity: 0;
+    animation: toastSlide 3s var(--ease) forwards;
+}
+
+body.light-theme .toast {
+    background: rgba(255, 255, 255, 0.95);
+    color: #111;
+}
+
+.toast i {
+    width: 2.4rem;
+    height: 2.4rem;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    font-size: 1.2rem;
+    flex-shrink: 0;
+}
+
+.toast.success i { background: #22c55e; color: #fff; }
+.toast.info i { background: var(--yellow); color: #111; }
+.toast.error i { background: #ef4444; color: #fff; }
+
+@keyframes toastSlide {
+    0% { transform: translateY(20px); opacity: 0; }
+    10%, 85% { transform: translateY(0); opacity: 1; }
+    100% { transform: translateY(-10px); opacity: 0; }
+}
+
+/* =========================================================
+   TECH STACK GRID (in Skills section)
+   ========================================================= */
+.tech-grid-wrap {
+    margin-top: 3rem;
+    padding: 2.4rem;
+    background: var(--card-bg);
+    backdrop-filter: blur(16px) saturate(160%);
+    -webkit-backdrop-filter: blur(16px) saturate(160%);
+    border: 1px solid var(--border);
+    border-radius: 2rem;
+}
+
+.tech-grid-title {
+    font-family: 'Sora', sans-serif;
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 1.8rem;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    letter-spacing: -0.01em;
+}
+
+.tech-grid-title i {
+    color: var(--yellow);
+    font-size: 1.8rem;
+}
+
+.tech-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(8rem, 1fr));
+    gap: 1.2rem;
+}
+
+.tech-logo {
+    position: relative;
+    aspect-ratio: 1;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--border);
+    border-radius: 1.4rem;
+    display: grid;
+    place-items: center;
+    font-size: 3rem;
+    transition: all 0.3s var(--ease);
+    cursor: pointer;
+}
+
+body.light-theme .tech-logo {
+    background: rgba(0, 0, 0, 0.03);
+}
+
+.tech-logo:hover {
+    transform: translateY(-4px) scale(1.05);
+    background: rgba(249, 202, 36, 0.08);
+    border-color: rgba(249, 202, 36, 0.3);
+    box-shadow: 0 12px 24px -6px var(--yellow-glow);
+}
+
+.tech-logo i {
+    transition: transform 0.4s var(--ease);
+}
+
+.tech-logo:hover i {
+    transform: scale(1.15) rotate(-8deg);
+}
+
+.tech-logo::after {
+    content: attr(data-name);
+    position: absolute;
+    bottom: -2.8rem;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 0.3rem 0.8rem;
+    background: var(--yellow);
+    color: #111;
+    border-radius: 5rem;
+    font-family: 'Sora', sans-serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.25s var(--ease);
+}
+
+.tech-logo:hover::after {
+    opacity: 1;
+    bottom: -3.4rem;
+}
+
+/* =========================================================
+   EASTER EGG MODAL
+   ========================================================= */
+.easter-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 300;
+    display: grid;
+    place-items: center;
+    padding: 2rem;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.4s var(--ease);
+}
+
+.easter-modal.open {
+    opacity: 1;
+    visibility: visible;
+}
+
+.easter-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(5, 5, 5, 0.85);
+    backdrop-filter: blur(10px);
+    cursor: pointer;
+}
+
+.easter-card {
+    position: relative;
+    z-index: 1;
+    max-width: 44rem;
+    width: 100%;
+    padding: 3.6rem 2.8rem;
+    background: linear-gradient(180deg, rgba(249, 202, 36, 0.1), rgba(20, 20, 20, 0.95));
+    backdrop-filter: blur(28px) saturate(180%);
+    border: 1px solid rgba(249, 202, 36, 0.3);
+    border-radius: 2.6rem;
+    text-align: center;
+    box-shadow: 0 24px 60px -16px rgba(249, 202, 36, 0.4);
+    transform: scale(0.8) translateY(20px);
+    transition: transform 0.5s var(--ease-out);
+}
+
+body.light-theme .easter-card {
+    background: linear-gradient(180deg, rgba(249, 202, 36, 0.15), rgba(255, 255, 255, 0.98));
+}
+
+.easter-modal.open .easter-card {
+    transform: scale(1) translateY(0);
+}
+
+.easter-close {
+    position: absolute;
+    top: 1.4rem;
+    right: 1.4rem;
+    width: 3.4rem;
+    height: 3.4rem;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.06);
+    color: var(--text);
+    cursor: pointer;
+    display: grid;
+    place-items: center;
+    font-size: 1.5rem;
+    transition: all 0.2s;
+}
+
+.easter-close:hover {
+    background: rgba(255, 255, 255, 0.12);
+    transform: rotate(90deg);
+}
+
+.easter-emoji {
+    font-size: 5rem;
+    margin-bottom: 1rem;
+    animation: easterBounce 1s var(--ease) infinite;
+}
+
+@keyframes easterBounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+.easter-card h3 {
+    font-family: 'Sora', sans-serif;
+    font-size: 2.6rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 1rem;
+    letter-spacing: -0.02em;
+    background: var(--g-text);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.easter-card p {
+    font-size: 1.5rem;
+    color: var(--text-soft);
+    line-height: 1.6;
+    margin-bottom: 1rem;
+}
+
+.easter-code {
+    display: inline-block;
+    padding: 0.6rem 1.4rem;
+    background: var(--yellow-soft);
+    border: 1px solid rgba(249, 202, 36, 0.3);
+    border-radius: 5rem;
+    font-family: 'Sora', sans-serif !important;
+    font-size: 1.15rem !important;
+    color: var(--yellow) !important;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    margin-bottom: 2rem !important;
+}
+
+/* =========================================================
+   KEYBOARD SHORTCUTS MODAL
+   ========================================================= */
+.shortcuts-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 300;
+    display: grid;
+    place-items: center;
+    padding: 2rem;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.4s var(--ease);
+}
+
+.shortcuts-modal.open {
+    opacity: 1;
+    visibility: visible;
+}
+
+.shortcuts-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(5, 5, 5, 0.7);
+    backdrop-filter: blur(10px);
+    cursor: pointer;
+}
+
+.shortcuts-card {
+    position: relative;
+    z-index: 1;
+    max-width: 48rem;
+    width: 100%;
+    padding: 3rem 2.6rem;
+    background: rgba(20, 20, 20, 0.95);
+    backdrop-filter: blur(28px) saturate(180%);
+    border: 1px solid var(--border-strong);
+    border-radius: 2.4rem;
+    box-shadow: 0 24px 60px -16px rgba(0, 0, 0, 0.6);
+    transform: scale(0.85) translateY(20px);
+    transition: transform 0.45s var(--ease-out);
+}
+
+body.light-theme .shortcuts-card {
+    background: rgba(255, 255, 255, 0.98);
+}
+
+.shortcuts-modal.open .shortcuts-card {
+    transform: scale(1) translateY(0);
+}
+
+.shortcuts-close {
+    position: absolute;
+    top: 1.4rem;
+    right: 1.4rem;
+    width: 3.4rem;
+    height: 3.4rem;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.06);
+    color: var(--text);
+    cursor: pointer;
+    display: grid;
+    place-items: center;
+    font-size: 1.5rem;
+    transition: all 0.2s;
+}
+
+body.light-theme .shortcuts-close {
+    background: rgba(0, 0, 0, 0.05);
+}
+
+.shortcuts-close:hover {
+    background: rgba(255, 255, 255, 0.12);
+    transform: rotate(90deg);
+}
+
+.shortcuts-head {
+    display: flex;
+    align-items: center;
+    gap: 1.4rem;
+    padding-bottom: 2rem;
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border);
+}
+
+.shortcuts-icon {
+    width: 5rem;
+    height: 5rem;
+    border-radius: 1.4rem;
+    background: var(--g-yellow);
+    color: #111;
+    display: grid;
+    place-items: center;
+    font-size: 2rem;
+    box-shadow: 0 8px 20px -4px var(--yellow-glow);
+    flex-shrink: 0;
+}
+
+.shortcuts-head h3 {
+    font-family: 'Sora', sans-serif;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 0.2rem;
+    letter-spacing: -0.02em;
+}
+
+.shortcuts-head p {
+    font-size: 1.35rem;
+    color: var(--text-muted);
+}
+
+.shortcuts-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.shortcut-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.2rem;
+    border-radius: 1rem;
+    transition: background 0.2s;
+}
+
+.shortcut-row:hover {
+    background: rgba(249, 202, 36, 0.06);
+}
+
+.shortcut-row > span:first-child {
+    font-family: 'Nunito', sans-serif;
+    font-size: 1.45rem;
+    color: var(--text-soft);
+    font-weight: 500;
+}
+
+.shortcut-row.easter > span:first-child {
+    color: var(--yellow);
+    font-weight: 700;
+}
+
+.key-combo {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.key-combo kbd {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 2.6rem;
+    height: 2.6rem;
+    padding: 0 0.6rem;
+    font-family: 'Sora', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--text);
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid var(--border-strong);
+    border-bottom: 2px solid var(--border-strong);
+    border-radius: 0.6rem;
+}
+
+body.light-theme .key-combo kbd {
+    background: rgba(0, 0, 0, 0.04);
+}
+
+/* =========================================================
    END NEW PREMIUM SECTIONS
    ========================================================= */
 
@@ -3392,6 +4571,7 @@ header .navbar ul li a.active i {
 
     #menu {
         display: block;
+        top: 5rem;  /* below status bar */
     }
 
     header.toggle {
@@ -3399,7 +4579,8 @@ header .navbar ul li a.active i {
     }
 
     body {
-        padding: 0;
+        padding-left: 0;
+        padding-top: 3.4rem; /* keep status bar space */
     }
 
     section {
@@ -3426,6 +4607,29 @@ header .navbar ul li a.active i {
 
     .hero-rotating-badge {
         display: none;
+    }
+
+    /* Status bar — reset sidebar offset */
+    .status-bar-inner {
+        padding-left: 6rem;
+        padding-right: 2rem;
+    }
+
+    /* Hide section indicator on tablet/mobile (too cluttered) */
+    .section-indicator { display: none; }
+
+    /* FAB — smaller positioning */
+    .fab {
+        bottom: 8rem;
+        right: 2rem;
+    }
+    .fab-trigger {
+        width: 4.8rem;
+        height: 4.8rem;
+    }
+    .fab-action {
+        width: 4.2rem;
+        height: 4.2rem;
     }
 }
 
@@ -3455,6 +4659,27 @@ header .navbar ul li a.active i {
 
     .wa-float { bottom: 1.8rem; right: 1.8rem; width: 5.4rem; height: 5.4rem; }
     .wa-float i { font-size: 2.4rem; }
+
+    /* Status bar — hide location on small screens */
+    .status-bar-inner {
+        gap: 1rem;
+        font-size: 1.1rem;
+        padding: 0.6rem 1.4rem;
+    }
+    .status-loc { display: none; }
+    .status-divider-desk { display: none; }
+    .status-cta a { padding: 0.25rem 0.8rem; font-size: 1.1rem; }
+    .status-cta a span { display: none; }
+
+    /* Tech grid — smaller on mobile */
+    .tech-grid {
+        grid-template-columns: repeat(auto-fit, minmax(6.4rem, 1fr));
+        gap: 0.8rem;
+    }
+    .tech-logo { font-size: 2.4rem; border-radius: 1.2rem; }
+
+    /* FAB further adjustments */
+    .fab { bottom: 9rem; right: 1.8rem; }
 }
 
 @media (max-width: 480px) {
@@ -3565,6 +4790,39 @@ header .navbar ul li a.active i {
 
     .top { right: 7.5rem; }
     .top img { width: 36px; }
+
+    /* Status bar — minimal on phones */
+    .status-bar-inner {
+        gap: 0.7rem;
+        padding: 0.5rem 1rem;
+        flex-wrap: nowrap;
+    }
+    .status-label { font-size: 1.05rem; }
+    .status-divider-mob { display: none; }
+    .status-cta a i { margin: 0; }
+
+    /* Tech grid 4 cols */
+    .tech-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+    .tech-grid-wrap { padding: 1.8rem 1.4rem; }
+    .tech-grid-title { font-size: 1.4rem; }
+
+    /* Easter modal */
+    .easter-card { padding: 2.8rem 2rem; }
+    .easter-card h3 { font-size: 2.2rem; }
+    .easter-emoji { font-size: 4rem; }
+
+    /* Shortcuts modal mobile */
+    .shortcuts-card { padding: 2.4rem 1.8rem; }
+    .shortcuts-head { gap: 1rem; padding-bottom: 1.4rem; margin-bottom: 1rem; }
+    .shortcuts-icon { width: 4.2rem; height: 4.2rem; font-size: 1.6rem; border-radius: 1.2rem; }
+    .shortcuts-head h3 { font-size: 1.7rem; }
+    .shortcuts-head p { font-size: 1.2rem; }
+    .shortcut-row { padding: 0.8rem; flex-wrap: wrap; gap: 0.6rem; }
+    .shortcut-row > span:first-child { font-size: 1.3rem; }
+    .key-combo kbd { min-width: 2.2rem; height: 2.2rem; font-size: 1.05rem; }
+    .shortcut-row.easter .key-combo kbd { min-width: 1.8rem; height: 1.8rem; font-size: 1rem; padding: 0 0.3rem; }
 }
 
 @media (max-width: 400px) {
