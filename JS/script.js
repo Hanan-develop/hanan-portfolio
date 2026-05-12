@@ -718,12 +718,239 @@ $(document).ready(function () {
         $fab.removeClass('open');
     });
 
+    // ========== Command Palette (Cmd+K) ==========
+    var cmdkItems = [
+        { group: 'Navigate', icon: 'fa-house', title: 'Home', sub: 'Top of the page', href: '#home' },
+        { group: 'Navigate', icon: 'fa-user', title: 'About', sub: 'About me', href: '#about' },
+        { group: 'Navigate', icon: 'fa-bullhorn', title: 'What\'s New', sub: 'Recent updates', href: '#whatsnew' },
+        { group: 'Navigate', icon: 'fa-code', title: 'Skills', sub: 'My technical skills', href: '#skills' },
+        { group: 'Navigate', icon: 'fa-briefcase', title: 'Services', sub: 'What I offer', href: '#services' },
+        { group: 'Navigate', icon: 'fa-diagram-project', title: 'Process', sub: 'How I work', href: '#process' },
+        { group: 'Navigate', icon: 'fa-trophy', title: 'Achievements', sub: 'My milestones', href: '#achievements' },
+        { group: 'Navigate', icon: 'fa-user-graduate', title: 'Education', sub: 'Education & experience', href: '#education' },
+        { group: 'Navigate', icon: 'fa-images', title: 'Portfolio', sub: 'My projects', href: '#portfolio' },
+        { group: 'Navigate', icon: 'fa-quote-left', title: 'Reviews', sub: 'Client testimonials', href: '#testimonials' },
+        { group: 'Navigate', icon: 'fa-circle-question', title: 'FAQ', sub: 'Frequently asked questions', href: '#faq' },
+        { group: 'Navigate', icon: 'fa-phone', title: 'Contact', sub: 'Get in touch', href: '#contact' },
+
+        { group: 'Actions', icon: 'fa-envelope', title: 'Email me', sub: 'abdulhanan4145534@gmail.com', href: 'mailto:abdulhanan4145534@gmail.com' },
+        { group: 'Actions', icon: 'fa-phone', title: 'Call me', sub: '+92 325 4145534', href: 'tel:+923254145534' },
+        { group: 'Actions', icon: 'fa-brands fa-whatsapp', title: 'WhatsApp', sub: 'Quick chat', href: 'https://wa.me/923254145534', external: true },
+        { group: 'Actions', icon: 'fa-download', title: 'Download CV', sub: 'PDF resume', href: 'Abdul Hanan.pdf', external: true },
+        { group: 'Actions', icon: 'fa-copy', title: 'Copy email', sub: 'Copy to clipboard', action: 'copyEmail' },
+
+        { group: 'Toggle', icon: 'fa-moon', title: 'Toggle theme', sub: 'Switch dark / light mode', action: 'toggleTheme' },
+        { group: 'Toggle', icon: 'fa-volume-high', title: 'Toggle sound', sub: 'Enable / disable click sounds', action: 'toggleSound' },
+
+        { group: 'Social', icon: 'fa-brands fa-github', title: 'GitHub', sub: '@Hanan-develop', href: 'https://github.com/Hanan-develop', external: true },
+        { group: 'Social', icon: 'fa-brands fa-linkedin', title: 'LinkedIn', sub: 'Connect with me', href: 'https://www.linkedin.com/in/abdul-hanan-926a4b39a/', external: true },
+        { group: 'Social', icon: 'fa-brands fa-youtube', title: 'YouTube', sub: '@CodeLabCreations', href: 'https://www.youtube.com/@CodeLabCreations_5345', external: true }
+    ];
+
+    var $cmdkModal = $('#cmdkModal');
+    var $cmdkInput = $('#cmdkInput');
+    var $cmdkResults = $('#cmdkResults');
+    var cmdkSelectedIdx = 0;
+    var cmdkFiltered = cmdkItems.slice();
+
+    function renderCmdk(items) {
+        $cmdkResults.empty();
+        cmdkFiltered = items;
+        cmdkSelectedIdx = 0;
+
+        if (items.length === 0) {
+            $cmdkResults.append('<div class="cmdk-empty">No results found</div>');
+            return;
+        }
+
+        var currentGroup = '';
+        items.forEach(function (item, idx) {
+            if (item.group !== currentGroup) {
+                currentGroup = item.group;
+                $cmdkResults.append('<div class="cmdk-group-label">' + currentGroup + '</div>');
+            }
+            var iconClass = item.icon.startsWith('fa-brands') ? item.icon : 'fa-solid ' + item.icon;
+            var $row = $('<a class="cmdk-item" data-idx="' + idx + '">' +
+                '<i class="' + iconClass + '"></i>' +
+                '<div class="cmdk-item-text">' +
+                '<span class="cmdk-item-title">' + item.title + '</span>' +
+                '<span class="cmdk-item-sub">' + item.sub + '</span>' +
+                '</div>' +
+                '<span class="cmdk-item-action">' + (item.external ? 'Open' : item.action ? 'Run' : 'Jump') + '</span>' +
+                '</a>');
+            if (idx === 0) $row.addClass('selected');
+            $cmdkResults.append($row);
+        });
+    }
+
+    function executeCmdkItem(item) {
+        if (!item) return;
+        if (item.action) {
+            if (item.action === 'copyEmail') $('#copyEmailBtn').trigger('click');
+            if (item.action === 'toggleTheme') $('#themeToggle').trigger('click');
+            if (item.action === 'toggleSound') $('#soundToggle').trigger('click');
+        } else if (item.href) {
+            if (item.external) {
+                window.open(item.href, '_blank', 'noopener');
+            } else if (item.href.startsWith('#')) {
+                var $target = $(item.href);
+                if ($target.length) {
+                    $('html, body').animate({ scrollTop: $target.offset().top - 20 }, 600);
+                }
+            } else {
+                window.location.href = item.href;
+            }
+        }
+        closeCmdk();
+    }
+
+    function openCmdk() {
+        $cmdkModal.addClass('open').attr('aria-hidden', 'false');
+        $('body').css('overflow', 'hidden');
+        $cmdkInput.val('').trigger('input');
+        setTimeout(function () { $cmdkInput.focus(); }, 200);
+        playSound('pop');
+    }
+
+    function closeCmdk() {
+        $cmdkModal.removeClass('open').attr('aria-hidden', 'true');
+        $('body').css('overflow', '');
+    }
+
+    $('[data-cmdk-close]').on('click', closeCmdk);
+
+    // Search filter
+    $cmdkInput.on('input', function () {
+        var q = $(this).val().toLowerCase().trim();
+        if (!q) {
+            renderCmdk(cmdkItems);
+            return;
+        }
+        var filtered = cmdkItems.filter(function (item) {
+            return item.title.toLowerCase().indexOf(q) > -1 ||
+                   item.sub.toLowerCase().indexOf(q) > -1 ||
+                   item.group.toLowerCase().indexOf(q) > -1;
+        });
+        renderCmdk(filtered);
+    });
+
+    // Click on result
+    $cmdkResults.on('click', '.cmdk-item', function () {
+        var idx = parseInt($(this).data('idx'), 10);
+        executeCmdkItem(cmdkFiltered[idx]);
+    });
+
+    // Hover updates selection
+    $cmdkResults.on('mouseover', '.cmdk-item', function () {
+        $('.cmdk-item').removeClass('selected');
+        $(this).addClass('selected');
+        cmdkSelectedIdx = parseInt($(this).data('idx'), 10);
+    });
+
+    // Initialize results
+    renderCmdk(cmdkItems);
+
+    // ========== Skills Radar Chart Animation ==========
+    var radarSkills = [
+        { skill: 'frontend', value: 0.95 },   // top
+        { skill: 'wordpress', value: 0.90 },  // top-right
+        { skill: 'shopify', value: 0.80 },    // bottom-right
+        { skill: 'seo', value: 0.65 },        // bottom-left
+        { skill: 'design', value: 0.75 }      // top-left
+    ];
+
+    function getRadarPoint(angle, radius) {
+        var cx = 200;
+        var cy = 200;
+        return {
+            x: cx + radius * Math.cos(angle),
+            y: cy + radius * Math.sin(angle)
+        };
+    }
+
+    function animateRadar() {
+        var maxRadius = 160;
+        // Pentagon: 5 points starting at top (-90deg)
+        var angles = [-90, -18, 54, 126, 198].map(function (a) { return a * Math.PI / 180; });
+        var points = [];
+        var pointsHtml = '';
+        for (var i = 0; i < 5; i++) {
+            var p = getRadarPoint(angles[i], maxRadius * radarSkills[i].value);
+            points.push(p.x.toFixed(1) + ',' + p.y.toFixed(1));
+            pointsHtml += '<circle cx="' + p.x.toFixed(1) + '" cy="' + p.y.toFixed(1) + '" r="5" />';
+        }
+        $('#radarData').attr('points', points.join(' '));
+        $('#radarPoints').html(pointsHtml);
+    }
+
+    if ('IntersectionObserver' in window) {
+        var radarObs = new IntersectionObserver(function (entries) {
+            entries.forEach(function (entry) {
+                if (entry.isIntersecting) {
+                    setTimeout(animateRadar, 300);
+                    radarObs.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.4 });
+        var radarEl = document.getElementById('radarSvg');
+        if (radarEl) radarObs.observe(radarEl);
+    } else {
+        animateRadar();
+    }
+
     // ========== Easter Egg — Konami Code ==========
     var konami = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight'];
     var konamiIdx = 0;
     var gPressed = false; // for "g then t/b" shortcut
 
     $(document).on('keydown', function (e) {
+        // Cmd+K / Ctrl+K — Open command palette (works anywhere, even in inputs)
+        if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
+            e.preventDefault();
+            if ($cmdkModal.hasClass('open')) {
+                closeCmdk();
+            } else {
+                openCmdk();
+            }
+            return;
+        }
+
+        // Command palette navigation
+        if ($cmdkModal.hasClass('open')) {
+            var $items = $('.cmdk-item');
+            if (e.key === 'ArrowDown') {
+                e.preventDefault();
+                cmdkSelectedIdx = Math.min(cmdkSelectedIdx + 1, cmdkFiltered.length - 1);
+                $items.removeClass('selected');
+                var $sel = $items.filter('[data-idx="' + cmdkSelectedIdx + '"]').addClass('selected');
+                if ($sel.length) {
+                    var top = $sel.position().top;
+                    if (top < 0 || top > $cmdkResults.height() - $sel.outerHeight()) {
+                        $cmdkResults.scrollTop($cmdkResults.scrollTop() + top - 100);
+                    }
+                }
+                return;
+            }
+            if (e.key === 'ArrowUp') {
+                e.preventDefault();
+                cmdkSelectedIdx = Math.max(cmdkSelectedIdx - 1, 0);
+                $items.removeClass('selected');
+                var $sel2 = $items.filter('[data-idx="' + cmdkSelectedIdx + '"]').addClass('selected');
+                if ($sel2.length) {
+                    var top2 = $sel2.position().top;
+                    if (top2 < 0) {
+                        $cmdkResults.scrollTop($cmdkResults.scrollTop() + top2 - 50);
+                    }
+                }
+                return;
+            }
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                executeCmdkItem(cmdkFiltered[cmdkSelectedIdx]);
+                return;
+            }
+        }
+
         // Don't trigger shortcuts when user is typing in input/textarea
         var tag = (e.target.tagName || '').toLowerCase();
         if (tag === 'input' || tag === 'textarea') return;
@@ -744,6 +971,11 @@ $(document).ready(function () {
 
         // Close any modal on Escape
         if (e.key === 'Escape') {
+            if ($cmdkModal.hasClass('open')) {
+                closeCmdk();
+                playSound('pop');
+                return;
+            }
             if ($('#easterModal').hasClass('open')) {
                 $('#easterModal').removeClass('open').attr('aria-hidden', 'true');
                 $('body').css('overflow', '');
@@ -829,7 +1061,7 @@ $(document).ready(function () {
 
     // ========== Show welcome toast after page load ==========
     setTimeout(function () {
-        showToast('Welcome! Press ? for keyboard shortcuts', 'success');
+        showToast('Welcome! Try Ctrl+K to search', 'success');
     }, 2000);
 
     // ========== Footer year ==========
