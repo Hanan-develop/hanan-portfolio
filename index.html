@@ -77,6 +77,7 @@
   <nav class="section-indicator" id="sectionIndicator" aria-label="Section indicator">
     <a href="#home" class="si-dot active" data-label="Home"></a>
     <a href="#about" class="si-dot" data-label="About"></a>
+    <a href="#whatsnew" class="si-dot" data-label="What's New"></a>
     <a href="#skills" class="si-dot" data-label="Skills"></a>
     <a href="#services" class="si-dot" data-label="Services"></a>
     <a href="#process" class="si-dot" data-label="Process"></a>
@@ -274,6 +275,9 @@
 
   <!-- Home Section Start -->
   <section class="home" id="home">
+    <!-- Particle background canvas -->
+    <canvas class="particles-canvas" id="particlesCanvas" aria-hidden="true"></canvas>
+
     <div class="home-badge">
       <span class="pulse-dot"></span>
       <span>Available for new projects</span>
@@ -288,6 +292,24 @@
       A passionate developer from Lahore, Pakistan — building responsive, SEO-friendly websites and online stores. 
       Skilled in HTML, CSS, JavaScript, jQuery, Bootstrap, WordPress, and Shopify.
     </p>
+
+    <!-- Hero Quick Stats -->
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <span class="hs-num">6+</span>
+        <span class="hs-label">Projects</span>
+      </div>
+      <span class="hs-divider"></span>
+      <div class="hero-stat">
+        <span class="hs-num">5+</span>
+        <span class="hs-label">Brands</span>
+      </div>
+      <span class="hs-divider"></span>
+      <div class="hero-stat">
+        <span class="hs-num">100%</span>
+        <span class="hs-label">Satisfaction</span>
+      </div>
+    </div>
 
     <div class="home-cta">
       <a href="#about"><button class="btn btn-primary"><i class="fas fa-user"></i> About Me</button></a>
