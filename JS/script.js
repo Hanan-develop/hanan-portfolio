@@ -489,6 +489,349 @@ $(document).ready(function () {
         }
     }
 
+    // ========== Live Clock (Lahore time) ==========
+    function updateClock() {
+        var now = new Date();
+        // Convert to Pakistan time (UTC+5)
+        var utc = now.getTime() + (now.getTimezoneOffset() * 60000);
+        var pkTime = new Date(utc + (3600000 * 5));
+        var hours = pkTime.getHours();
+        var minutes = pkTime.getMinutes();
+        var ampm = hours >= 12 ? 'PM' : 'AM';
+        hours = hours % 12 || 12;
+        var display = hours + ':' + (minutes < 10 ? '0' + minutes : minutes) + ' ' + ampm;
+        $('#liveClock').text(display);
+
+        // Update status based on time (working hours 9 AM - 11 PM PKT)
+        var $statusLabel = $('#statusLabel');
+        var $statusLed = $('.status-led');
+        if (pkTime.getHours() >= 9 && pkTime.getHours() < 23) {
+            $statusLabel.text('Available for new projects');
+            $statusLed.css('background', '#22c55e').css('box-shadow', '0 0 8px rgba(34, 197, 94, 0.6)');
+        } else {
+            $statusLabel.text('Working hours: 9 AM - 11 PM PKT');
+            $statusLed.css('background', '#f59e0b').css('box-shadow', '0 0 8px rgba(245, 158, 11, 0.6)');
+        }
+    }
+    updateClock();
+    setInterval(updateClock, 30000); // update every 30s
+
+    // ========== Status Bar — hide on scroll down, show on scroll up ==========
+    var $statusBar = $('#statusBar');
+    var lastScroll = 0;
+    $(window).on('scroll', function () {
+        var currentScroll = $(window).scrollTop();
+        if (currentScroll > 100 && currentScroll > lastScroll) {
+            $statusBar.addClass('hidden');
+        } else {
+            $statusBar.removeClass('hidden');
+        }
+        lastScroll = currentScroll;
+    });
+
+    // ========== Section Indicator Dots ==========
+    var $siDots = $('.si-dot');
+    $(window).on('scroll', function () {
+        var scrollPos = $(window).scrollTop() + window.innerHeight / 3;
+        $siDots.each(function () {
+            var hash = $(this).attr('href');
+            if (hash && hash.length > 1) {
+                var $target = $(hash);
+                if ($target.length) {
+                    if ($target.offset().top <= scrollPos &&
+                        $target.offset().top + $target.outerHeight() > scrollPos) {
+                        $siDots.removeClass('active');
+                        $(this).addClass('active');
+                    }
+                }
+            }
+        });
+    });
+
+    // ========== Sound System (Web Audio API) ==========
+    var audioCtx = null;
+    var soundEnabled = localStorage.getItem('hananSound') !== 'off'; // default ON
+    if (!soundEnabled) {
+        $('body').addClass('sound-muted');
+    }
+
+    function initAudio() {
+        if (!audioCtx) {
+            try {
+                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            } catch (e) {
+                audioCtx = null;
+            }
+        }
+        // Resume if suspended (browsers require user interaction first)
+        if (audioCtx && audioCtx.state === 'suspended') {
+            audioCtx.resume();
+        }
+    }
+
+    // Generate different sounds programmatically (no audio files needed)
+    function playSound(type) {
+        if (!soundEnabled) return;
+        initAudio();
+        if (!audioCtx) return;
+
+        var sounds = {
+            click: { freq: 800, duration: 0.05, vol: 0.08, type: 'sine' },
+            tap: { freq: 1200, duration: 0.04, vol: 0.06, type: 'sine' },
+            success: { freq: 880, duration: 0.15, vol: 0.1, type: 'triangle', endFreq: 1320 },
+            toggle: { freq: 600, duration: 0.08, vol: 0.08, type: 'sine', endFreq: 900 },
+            pop: { freq: 1000, duration: 0.06, vol: 0.07, type: 'sine', endFreq: 400 },
+            hover: { freq: 1400, duration: 0.03, vol: 0.03, type: 'sine' }
+        };
+
+        var s = sounds[type] || sounds.click;
+        var oscillator = audioCtx.createOscillator();
+        var gainNode = audioCtx.createGain();
+
+        oscillator.connect(gainNode);
+        gainNode.connect(audioCtx.destination);
+
+        oscillator.type = s.type;
+        oscillator.frequency.setValueAtTime(s.freq, audioCtx.currentTime);
+
+        // Frequency sweep if endFreq specified
+        if (s.endFreq) {
+            oscillator.frequency.exponentialRampToValueAtTime(s.endFreq, audioCtx.currentTime + s.duration);
+        }
+
+        // Smooth volume envelope
+        gainNode.gain.setValueAtTime(0, audioCtx.currentTime);
+        gainNode.gain.linearRampToValueAtTime(s.vol, audioCtx.currentTime + 0.01);
+        gainNode.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + s.duration);
+
+        oscillator.start(audioCtx.currentTime);
+        oscillator.stop(audioCtx.currentTime + s.duration);
+    }
+
+    // Attach click sound to interactive elements
+    $(document).on('click', 'a, button, .filter-btn, .nav-link, .skill-tile, .tech-logo, .faq-q, .si-dot, .t-arrow, .t-dot', function (e) {
+        // Different sounds for different element types
+        var $el = $(this);
+        if ($el.hasClass('fab-trigger')) {
+            playSound('pop');
+        } else if ($el.hasClass('faq-q')) {
+            playSound('toggle');
+        } else if ($el.hasClass('si-dot') || $el.hasClass('t-dot')) {
+            playSound('tap');
+        } else if ($el.hasClass('filter-btn')) {
+            playSound('toggle');
+        } else {
+            playSound('click');
+        }
+    });
+
+    // Sound toggle button
+    $('#soundToggle').on('click', function (e) {
+        e.stopPropagation();
+        soundEnabled = !soundEnabled;
+        $('body').toggleClass('sound-muted');
+        localStorage.setItem('hananSound', soundEnabled ? 'on' : 'off');
+        if (soundEnabled) {
+            playSound('success');
+            showToast('Sound enabled 🔊', 'info');
+        } else {
+            showToast('Sound muted 🔇', 'info');
+        }
+    });
+
+    // ========== FAB Menu Toggle ==========
+    var $fab = $('#fab');
+    var fabBadgeCleared = localStorage.getItem('hananFabBadge');
+    if (fabBadgeCleared === 'cleared') {
+        $('#fabBadge').addClass('hidden');
+    }
+
+    $('#fabTrigger').on('click', function (e) {
+        e.stopPropagation();
+        $fab.toggleClass('open');
+        // Clear badge on first open
+        if (!fabBadgeCleared) {
+            $('#fabBadge').addClass('hidden');
+            localStorage.setItem('hananFabBadge', 'cleared');
+        }
+    });
+
+    // Close FAB when clicking outside
+    $(document).on('click', function (e) {
+        if (!$(e.target).closest('#fab').length) {
+            $fab.removeClass('open');
+        }
+    });
+
+    // ========== Toast Notifications ==========
+    function showToast(message, type) {
+        type = type || 'info';
+        var iconMap = {
+            success: 'fa-check',
+            info: 'fa-circle-info',
+            error: 'fa-circle-exclamation'
+        };
+        var $toast = $('<div class="toast ' + type + '"><i class="fa-solid ' + iconMap[type] + '"></i><span>' + message + '</span></div>');
+        $('#toastContainer').append($toast);
+        setTimeout(function () { $toast.remove(); }, 3000);
+    }
+
+    // ========== Copy Email Button ==========
+    $('#copyEmailBtn').on('click', function () {
+        var email = 'abdulhanan4145534@gmail.com';
+        if (navigator.clipboard) {
+            navigator.clipboard.writeText(email).then(function () {
+                showToast('Email copied to clipboard!', 'success');
+                playSound('success');
+            }).catch(function () {
+                showToast('Could not copy. Try manually.', 'error');
+            });
+        } else {
+            // Fallback for older browsers
+            var $temp = $('<input>');
+            $('body').append($temp);
+            $temp.val(email).select();
+            try {
+                document.execCommand('copy');
+                showToast('Email copied to clipboard!', 'success');
+                playSound('success');
+            } catch (e) {
+                showToast('Could not copy. Try manually.', 'error');
+            }
+            $temp.remove();
+        }
+        $fab.removeClass('open');
+    });
+
+    // ========== Theme Toggle ==========
+    var savedTheme = localStorage.getItem('hananTheme');
+    if (savedTheme === 'light') {
+        $('body').addClass('light-theme');
+    }
+
+    $('#themeToggle').on('click', function () {
+        $('body').toggleClass('light-theme');
+        var isLight = $('body').hasClass('light-theme');
+        localStorage.setItem('hananTheme', isLight ? 'light' : 'dark');
+        showToast(isLight ? 'Light mode activated ☀️' : 'Dark mode activated 🌙', 'info');
+        playSound('toggle');
+        $fab.removeClass('open');
+    });
+
+    // ========== Easter Egg — Konami Code ==========
+    var konami = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight'];
+    var konamiIdx = 0;
+    var gPressed = false; // for "g then t/b" shortcut
+
+    $(document).on('keydown', function (e) {
+        // Don't trigger shortcuts when user is typing in input/textarea
+        var tag = (e.target.tagName || '').toLowerCase();
+        if (tag === 'input' || tag === 'textarea') return;
+
+        // Konami code
+        if (e.key === konami[konamiIdx]) {
+            konamiIdx++;
+            if (konamiIdx === konami.length) {
+                $('#easterModal').addClass('open').attr('aria-hidden', 'false');
+                $('body').css('overflow', 'hidden');
+                playSound('success');
+                konamiIdx = 0;
+            }
+        } else if (konami.indexOf(e.key) === -1) {
+            // Reset konami only if non-arrow key pressed
+            konamiIdx = 0;
+        }
+
+        // Close any modal on Escape
+        if (e.key === 'Escape') {
+            if ($('#easterModal').hasClass('open')) {
+                $('#easterModal').removeClass('open').attr('aria-hidden', 'true');
+                $('body').css('overflow', '');
+                playSound('pop');
+            }
+            if ($('#shortcutsModal').hasClass('open')) {
+                $('#shortcutsModal').removeClass('open').attr('aria-hidden', 'true');
+                $('body').css('overflow', '');
+                playSound('pop');
+            }
+            if ($('#waPopup').hasClass('open')) {
+                closeWaPopup();
+            }
+        }
+
+        // Keyboard shortcuts (single keys)
+        var key = e.key.toLowerCase();
+
+        // ? — Show shortcuts help
+        if (key === '?' || (e.shiftKey && key === '/')) {
+            e.preventDefault();
+            $('#shortcutsModal').addClass('open').attr('aria-hidden', 'false');
+            playSound('toggle');
+            return;
+        }
+
+        // T — Toggle theme
+        if (key === 't' && !gPressed && !e.ctrlKey && !e.metaKey && !e.shiftKey) {
+            $('#themeToggle').trigger('click');
+            return;
+        }
+
+        // M — Toggle mute / sound
+        if (key === 'm' && !e.ctrlKey && !e.metaKey) {
+            $('#soundToggle').trigger('click');
+            return;
+        }
+
+        // C — Open contact section
+        if (key === 'c' && !e.ctrlKey && !e.metaKey) {
+            $('html, body').animate({
+                scrollTop: $('#contact').offset().top - 20
+            }, 600);
+            playSound('click');
+            return;
+        }
+
+        // G — start of "go to" combo
+        if (key === 'g' && !e.ctrlKey && !e.metaKey) {
+            gPressed = true;
+            setTimeout(function () { gPressed = false; }, 1500);
+            return;
+        }
+
+        // G + T = Go to top
+        if (key === 't' && gPressed) {
+            $('html, body').animate({ scrollTop: 0 }, 600);
+            gPressed = false;
+            playSound('tap');
+            return;
+        }
+
+        // G + B = Go to bottom
+        if (key === 'b' && gPressed) {
+            $('html, body').animate({ scrollTop: $(document).height() }, 600);
+            gPressed = false;
+            playSound('tap');
+            return;
+        }
+    });
+
+    // Close shortcuts modal
+    $('[data-shortcut-close]').on('click', function () {
+        $('#shortcutsModal').removeClass('open').attr('aria-hidden', 'true');
+        $('body').css('overflow', '');
+    });
+
+    // Close easter modal
+    $('#easterModal [data-close]').on('click', function () {
+        $('#easterModal').removeClass('open').attr('aria-hidden', 'true');
+        $('body').css('overflow', '');
+    });
+
+    // ========== Show welcome toast after page load ==========
+    setTimeout(function () {
+        showToast('Welcome! Press ? for keyboard shortcuts', 'success');
+    }, 2000);
+
     // ========== Footer year ==========
     $('#year').text(new Date().getFullYear());
 
