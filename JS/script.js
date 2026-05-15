@@ -46,10 +46,10 @@ $(document).ready(function () {
         $('#scrollProgress').css('width', scrollPercent + '%');
 
         // Close mobile menu if open + scroll
-        if (scrollTop > 0) {
-            $('.top').fadeIn(200);
+        if (scrollTop > 300) {
+            $('.top').addClass('show');
         } else {
-            $('.top').fadeOut(200);
+            $('.top').removeClass('show');
         }
 
         // Active nav link based on scroll position
@@ -223,7 +223,9 @@ $(document).ready(function () {
         if (e.key === 'Escape' && $waPopup.hasClass('open')) closeWaPopup();
     });
 
-    // ========== Contact form — AJAX submit to admin API ==========
+    // ========== Contact form — Submit to Google Sheets ==========
+    var GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbx2sQwvMTOCeNdiE255oLaoqXUHvdsKrcn423nUIqrwqRtcWTdUL6LPm9VJjVz4M6dE/exec';
+
     $('#contactForm').on('submit', function (e) {
         e.preventDefault();
 
@@ -250,41 +252,35 @@ $(document).ready(function () {
             return;
         }
 
-        // Get admin API URL from tracker (or fallback)
-        var apiBase = (window.PortfolioTracker && window.PortfolioTracker.api) || '/admin/api';
-
         $btn.prop('disabled', true).html('<i class="fas fa-circle-notch fa-spin"></i> Sending...');
 
-        $.ajax({
-            url: apiBase + '/submit.php',
+        // Submit using URL-encoded form data (avoids CORS preflight)
+        var formData = new FormData();
+        formData.append('name', name);
+        formData.append('email', email);
+        formData.append('phone', mobile);
+        formData.append('projectType', project);
+        formData.append('message', message);
+
+        fetch(GOOGLE_SCRIPT_URL, {
             method: 'POST',
-            contentType: 'application/json',
-            data: JSON.stringify({
-                name: name, email: email, mobile: mobile,
-                project: project, message: message
-            }),
-            crossDomain: true,
-            xhrFields: { withCredentials: false }
-        }).done(function (res) {
+            body: formData
+        })
+        .then(function (response) { return response.json(); })
+        .then(function (res) {
             if (res && res.ok) {
-                $note.css('color', '#22c55e').text('✓ ' + (res.message || 'Message sent! I will reply soon.'));
+                $note.css('color', '#22c55e').text('✓ Message sent! I will reply soon.');
                 $form[0].reset();
-                // Track form submit event
-                if (window.PortfolioTracker) {
-                    window.PortfolioTracker.track('form_submit', 'contact', email);
-                }
                 setTimeout(function () { $note.text(''); }, 6000);
             } else {
                 $note.css('color', '#ef4444').text((res && res.error) || 'Could not send. Try again.');
             }
-        }).fail(function (xhr) {
-            var msg = 'Network error. Please try again.';
-            try {
-                var resp = JSON.parse(xhr.responseText);
-                if (resp.error) msg = resp.error;
-            } catch (e) { }
-            $note.css('color', '#ef4444').text(msg);
-        }).always(function () {
+        })
+        .catch(function (err) {
+            console.error('Form submit error:', err);
+            $note.css('color', '#ef4444').text('Network error. Please try again.');
+        })
+        .finally(function () {
             $btn.prop('disabled', false).html(originalBtnHtml);
         });
     });
@@ -1167,7 +1163,7 @@ $(document).ready(function () {
     }
 
     // ========== 3D Tilt Effect on Cards ==========
-    var tiltSelector = '.service-card, .process-step, .impact-stat, .achievement-card, .cert-card, .quick-card';
+    var tiltSelector = '.service-card, .process-step, .impact-stat, .achievement-card, .quick-card';
 
     // Only on desktop (hover capable, fine pointer)
     if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
@@ -1189,6 +1185,64 @@ $(document).ready(function () {
 
         $(document).on('mouseleave', tiltSelector, function () {
             $(this).css('transform', '');
+        });
+    }
+
+    // ========== Spotlight Cursor Tracking on Cards (Desktop) ==========
+    if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+        var spotlightSelector = '.service-card, .process-step, .impact-stat, .achievement-card, .quick-card';
+        $(document).on('mousemove', spotlightSelector, function (e) {
+            var rect = this.getBoundingClientRect();
+            var x = e.clientX - rect.left;
+            var y = e.clientY - rect.top;
+            this.style.setProperty('--mouse-x', x + 'px');
+            this.style.setProperty('--mouse-y', y + 'px');
+        });
+    }
+
+    // ========== Magnetic Button Effect (Desktop) ==========
+    if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+        var magneticSelector = '.btn-primary, .btn-ghost, .quick-arrow';
+
+        $(document).on('mousemove', magneticSelector, function (e) {
+            var $btn = $(this);
+            var rect = this.getBoundingClientRect();
+            var x = e.clientX - rect.left - rect.width / 2;
+            var y = e.clientY - rect.top - rect.height / 2;
+            var strength = 0.25;
+
+            $btn.css('transform',
+                'translate(' + (x * strength) + 'px, ' + (y * strength - 3) + 'px) scale(1.05)'
+            );
+        });
+
+        $(document).on('mouseleave', magneticSelector, function () {
+            $(this).css('transform', '');
+        });
+    }
+
+    // ========== Parallax Effect on Hero ==========
+    var $home = $('.home');
+    if ($home.length && window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+        var $heroTitle = $home.find('h1');
+        var $heroBadge = $home.find('.home-badge');
+
+        $home.on('mousemove', function (e) {
+            var rect = this.getBoundingClientRect();
+            var x = (e.clientX - rect.left - rect.width / 2) / rect.width;
+            var y = (e.clientY - rect.top - rect.height / 2) / rect.height;
+
+            $heroTitle.css('transform',
+                'perspective(1000px) rotateY(' + (x * 5).toFixed(1) + 'deg) rotateX(' + (-y * 3).toFixed(1) + 'deg)'
+            );
+            $heroBadge.css('transform',
+                'perspective(1000px) translateX(' + (x * -10).toFixed(1) + 'px) translateY(' + (y * -5).toFixed(1) + 'px)'
+            );
+        });
+
+        $home.on('mouseleave', function () {
+            $heroTitle.css('transform', '');
+            $heroBadge.css('transform', '');
         });
     }
 
