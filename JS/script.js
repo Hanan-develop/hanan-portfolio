@@ -1249,4 +1249,88 @@ $(document).ready(function () {
     // ========== Footer year ==========
     $('#year').text(new Date().getFullYear());
 
+    // ========== Visitor Analytics Tracker ==========
+    (function trackVisitor() {
+        var ANALYTICS_URL = 'https://script.google.com/macros/s/AKfycbx2sQwvMTOCeNdiE255oLaoqXUHvdsKrcn423nUIqrwqRtcWTdUL6LPm9VJjVz4M6dE/exec';
+        var SESSION_KEY = 'hanan_visit_session';
+        var LAST_TRACK_KEY = 'hanan_last_track';
+        var THROTTLE_MS = 5 * 60 * 1000; // Don't re-track within 5 minutes
+
+        // Throttle check
+        try {
+            var lastTrack = parseInt(sessionStorage.getItem(LAST_TRACK_KEY) || '0');
+            if (Date.now() - lastTrack < THROTTLE_MS) return;
+        } catch (e) { }
+
+        // Detect device
+        var ua = navigator.userAgent;
+        var device = /Mobi|Android|iPhone|iPad/i.test(ua) ?
+                     (/iPad|Tablet/i.test(ua) ? 'tablet' : 'mobile') : 'desktop';
+
+        // Detect browser
+        var browser = 'Other';
+        if (/Edg\//i.test(ua)) browser = 'Edge';
+        else if (/Chrome/i.test(ua) && !/Edg/i.test(ua)) browser = 'Chrome';
+        else if (/Firefox/i.test(ua)) browser = 'Firefox';
+        else if (/Safari/i.test(ua) && !/Chrome/i.test(ua)) browser = 'Safari';
+        else if (/Opera|OPR/i.test(ua)) browser = 'Opera';
+
+        // Detect OS
+        var os = 'Other';
+        if (/Windows/i.test(ua)) os = 'Windows';
+        else if (/Mac OS|Macintosh/i.test(ua)) os = 'macOS';
+        else if (/Android/i.test(ua)) os = 'Android';
+        else if (/iPhone|iPad|iPod/i.test(ua)) os = 'iOS';
+        else if (/Linux/i.test(ua)) os = 'Linux';
+
+        // Get or create session ID
+        var session;
+        try {
+            session = sessionStorage.getItem(SESSION_KEY);
+            if (!session) {
+                session = 's_' + Date.now() + '_' + Math.random().toString(36).substr(2, 8);
+                sessionStorage.setItem(SESSION_KEY, session);
+            }
+        } catch (e) { session = 's_' + Date.now(); }
+
+        // Detect referrer
+        var referrer = 'direct';
+        if (document.referrer) {
+            try {
+                var refUrl = new URL(document.referrer);
+                if (refUrl.hostname !== window.location.hostname) {
+                    referrer = refUrl.hostname;
+                }
+            } catch (e) { }
+        }
+
+        // Get country (free IP API - non-blocking)
+        function sendTrack(country) {
+            var formData = new FormData();
+            formData.append('action', 'trackVisit');
+            formData.append('page', window.location.pathname + window.location.hash);
+            formData.append('device', device);
+            formData.append('browser', browser);
+            formData.append('os', os);
+            formData.append('country', country || 'unknown');
+            formData.append('referrer', referrer);
+            formData.append('session', session);
+
+            fetch(ANALYTICS_URL, { method: 'POST', body: formData, keepalive: true })
+                .catch(function () { });
+
+            try { sessionStorage.setItem(LAST_TRACK_KEY, Date.now().toString()); } catch (e) { }
+        }
+
+        // Try to detect country via free IP API (non-blocking)
+        fetch('https://ipapi.co/json/')
+            .then(function (r) { return r.json(); })
+            .then(function (data) {
+                sendTrack(data.country_name || data.country || 'unknown');
+            })
+            .catch(function () {
+                sendTrack('unknown');
+            });
+    })();
+
 });
