@@ -1,0 +1,278 @@
+/* =========================================================
+   HANAN PORTFOLIO — DYNAMIC CONTENT STYLES
+   For sections that get dynamic data from dashboard.
+   Compatible with existing yellow/dark theme.
+   ========================================================= */
+
+/* ===== PORTFOLIO CARDS ===== */
+.portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2rem;
+    padding: 2rem 0;
+}
+
+.portfolio-card {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(.16, 1, .3, 1);
+    position: relative;
+}
+
+.portfolio-card:hover {
+    transform: translateY(-8px);
+    border-color: var(--card-color, #f9ca24);
+    box-shadow: 0 20px 50px -10px rgba(0, 0, 0, 0.6), 0 0 0 1px var(--card-color, #f9ca24);
+}
+
+.portfolio-img-wrap {
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: 16 / 10;
+    background: rgba(0, 0, 0, 0.2);
+}
+
+.portfolio-img-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s cubic-bezier(.16, 1, .3, 1);
+}
+
+.portfolio-card:hover .portfolio-img-wrap img {
+    transform: scale(1.08);
+}
+
+.portfolio-img-placeholder {
+    width: 100%;
+    height: 100%;
+    display: grid;
+    place-items: center;
+    font-size: 4rem;
+}
+
+.portfolio-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.85), transparent 60%);
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    padding: 1.5rem;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.portfolio-card:hover .portfolio-overlay {
+    opacity: 1;
+}
+
+.portfolio-link {
+    background: var(--card-color, #f9ca24);
+    color: #111;
+    padding: 0.8rem 1.5rem;
+    border-radius: 100px;
+    font-family: 'Sora', sans-serif;
+    font-weight: 700;
+    font-size: 0.95rem;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: transform 0.2s;
+}
+
+.portfolio-link:hover {
+    transform: scale(1.05);
+}
+
+.portfolio-info {
+    padding: 1.6rem 1.8rem;
+}
+
+.portfolio-category {
+    font-family: 'Sora', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--card-color, #f9ca24);
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
+.portfolio-info h3 {
+    font-family: 'Sora', sans-serif;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #fff;
+    margin: 0 0 0.7rem;
+    line-height: 1.3;
+}
+
+.portfolio-info p {
+    color: rgba(255, 255, 255, 0.65);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin: 0 0 1rem;
+}
+
+.portfolio-tech {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+}
+
+.portfolio-tech span {
+    background: rgba(249, 202, 36, 0.1);
+    color: var(--card-color, #f9ca24);
+    border: 1px solid rgba(249, 202, 36, 0.2);
+    padding: 0.3rem 0.7rem;
+    border-radius: 100px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    font-family: 'Sora', sans-serif;
+}
+
+/* ===== TESTIMONIAL CARDS ===== */
+.testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 1.8rem;
+    padding: 2rem 0;
+}
+
+.testimonial-card {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+    padding: 2rem 1.8rem;
+    position: relative;
+    transition: all 0.3s cubic-bezier(.16, 1, .3, 1);
+}
+
+.testimonial-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(249, 202, 36, 0.3);
+}
+
+.testimonial-card.featured {
+    background: rgba(249, 202, 36, 0.06);
+    border-color: rgba(249, 202, 36, 0.3);
+}
+
+.testimonial-card.featured::before {
+    content: 'FEATURED';
+    position: absolute;
+    top: -10px;
+    right: 1.5rem;
+    background: #f9ca24;
+    color: #111;
+    padding: 0.3rem 0.8rem;
+    border-radius: 100px;
+    font-family: 'Sora', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+}
+
+.testi-stars {
+    display: flex;
+    gap: 0.2rem;
+    color: #f9ca24;
+    font-size: 1rem;
+    margin-bottom: 1.2rem;
+}
+
+.testi-text {
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 1rem;
+    line-height: 1.7;
+    margin: 0 0 1.5rem;
+    font-style: italic;
+}
+
+.testi-author {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.testi-avatar,
+.testi-avatar-fallback {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+    border: 2px solid rgba(249, 202, 36, 0.3);
+}
+
+.testi-avatar-fallback {
+    display: grid;
+    place-items: center;
+    background: linear-gradient(135deg, #f9ca24, #ffd93d);
+    color: #111;
+    font-family: 'Sora', sans-serif;
+    font-weight: 800;
+    font-size: 1.1rem;
+}
+
+.testi-info h4 {
+    font-family: 'Sora', sans-serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #fff;
+    margin: 0;
+}
+
+.testi-info p {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.55);
+    margin: 0.2rem 0 0;
+}
+
+/* ===== MOBILE ===== */
+@media (max-width: 768px) {
+    .portfolio-grid,
+    .testimonials-grid {
+        grid-template-columns: 1fr;
+        gap: 1.4rem;
+        padding: 1rem 0;
+    }
+
+    .portfolio-info {
+        padding: 1.2rem 1.4rem;
+    }
+
+    .testimonial-card {
+        padding: 1.6rem 1.4rem;
+    }
+
+    /* Show overlay always on mobile */
+    .portfolio-overlay {
+        opacity: 1;
+        background: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent 70%);
+    }
+}
+
+/* ===== LIGHT THEME COMPATIBILITY ===== */
+body.light-theme .portfolio-card,
+body.light-theme .testimonial-card {
+    background: rgba(0, 0, 0, 0.02);
+    border-color: rgba(0, 0, 0, 0.08);
+}
+
+body.light-theme .portfolio-info h3,
+body.light-theme .testi-info h4 {
+    color: #111;
+}
+
+body.light-theme .portfolio-info p,
+body.light-theme .testi-text {
+    color: rgba(0, 0, 0, 0.7);
+}
